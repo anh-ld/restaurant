@@ -1,0 +1,101 @@
+/* html {
+  height: 100%;
+} */
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  padding: 0;
+  margin: 0;
+}
+
+.overview {
+  text-align: center;
+  background-color: whitesmoke;
+  padding: 1rem;
+  border-bottom: 2px solid grey;
+}
+
+.overview p {
+  font-size: 1.2rem;
+}
+
+.body {
+  display: flex;
+  background-color: seashell;
+}
+
+.details {
+  width: 25%;
+  height: calc(100vh - (132px + 0rem));
+  overflow: scroll;
+}
+
+.details h2, h3 {
+  text-align: center;
+  padding: 0.5rem 0;
+}
+
+.orderlist table {
+  margin: 0.2rem auto;
+  text-align: center;
+  width: 90%;
+  padding: 0.2rem;
+  table-layout:fixed;
+  width:90%;
+}
+
+.orderlist table, th, td {
+  border-collapse: collapse;
+}
+
+.toggletable {
+  display: flex;
+  justify-content: center;
+}
+
+.toggletable button {
+  font-size: 1.5rem;
+  padding: 0.8rem;
+  background-color: cornsilk;
+  color: cornflowerblue;
+}
+
+.layout {
+  width: 50%;
+  height: calc(100vh - (132px + 0rem));
+  overflow: scroll;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.tablebutton {
+  display: inline-block;
+}
+
+.tablebutton button {
+  width: 75px;
+  height: 75px;
+  margin: 1.75rem;
+  font-size: 1rem;
+  background-color: yellow;
+}
+
+.menu {
+  width: 25%;
+  height: calc(100vh - (132px + 0rem));
+  overflow: scroll;
+}
+
+.orderbutton{
+  width: 50%;
+  height: 75px;
+  font-size: 1rem;
+  color: black;
+  background-color: cornsilk;
+}
