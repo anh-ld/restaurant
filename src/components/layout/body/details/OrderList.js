@@ -3,11 +3,15 @@ import { connect } from "react-redux";
 import deleteTableItem from '../../../../actions/deleteTableItem';
 
 class OrderList extends Component {
+  componentDidUpdate = () => {
+    this.refs.orderTable.scrollIntoView(false);
+  }
+
   render() {
     return (
       <div className="orderList">
         {this.props.items.length === 0 ? "" :
-          <table>
+          <table ref='orderTable'>
             <thead>
               <tr>
                 <th>Item</th>
