@@ -1,14 +1,12 @@
-import { ADD_TABLE_ITEM } from "../constants/constants.js";
-
 const addTableItem = (name, price, id) => {
   return {
-    type: ADD_TABLE_ITEM,
+    type: "ADD_TABLE_ITEM",
     tableId: id,
     item: {
-      name: name,
-      price: price
+      price,
+      name
     }
-  };
-};
+  }
+}
 
 export default addTableItem;

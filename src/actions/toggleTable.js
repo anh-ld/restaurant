@@ -1,9 +1,7 @@
-import { TOGGLE_TABLE } from "../constants/constants.js";
-
-const toggleTable = id => {
+const toggleTable = (id) => {
   return {
-    type: TOGGLE_TABLE,
-    id: id
+    type: "TOGGLE_TABLE",
+    id
   };
 };
 

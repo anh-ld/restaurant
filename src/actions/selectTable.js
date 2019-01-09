@@ -1,9 +1,7 @@
-import { SELECT_TABLE } from "../constants/constants.js";
-
-const selectTable = id => {
+const selectTable = (id) => {
   return {
-    type: SELECT_TABLE,
-    id: id
+    type: "SELECT_TABLE",
+    id
   };
 };
 
