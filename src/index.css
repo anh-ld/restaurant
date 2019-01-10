@@ -1,8 +1,16 @@
 /* GENERAL RULES */
+@font-face {
+  font-family: 'horizon_roundedbold';
+  src: url('./fonts/horizonrounded-webfont.woff2') format('woff2'),
+       url('./fonts/horizonrounded-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
 body {
   margin: 0;
   padding: 0;
-  font-family: sans-serif;
+  font-family: 'horizon_roundedbold', sans-serif;
   background-color: #D6ECD2;
 }
 
@@ -15,6 +23,7 @@ h3 {
 button {
   border-radius: 0.25rem;
   border: none;
+  font-family: 'horizon_roundedbold';
 }
 
 button:focus {
@@ -45,7 +54,7 @@ button:focus {
 .dashboard {
   width: 960px;
   margin: 0 auto;
-  padding: 1rem;
+  padding: 0 1rem;
 }
 
 /* HEADER */
@@ -106,12 +115,13 @@ button:focus {
 
 .summary .small-text {
   font-size: 1.8rem;
+  color: #555555;
 }
 
 /* BODY */
 .body > div:first-child {
   display: flex;
-  margin: 2rem 0 1rem 0;
+  margin: 1.5rem 0 1rem 0;
   height: 350px;
 }
 
@@ -152,9 +162,14 @@ button:focus {
   margin-bottom: 0.5rem;
 }
 
+.details #checkOutButton:hover,
+.details #checkOutButton:active {
+  background-color: #838C91;
+}
+
 /* ORDERLIST */
 .orderList {
-  height: 245px;
+  height: 232px;
   overflow-y: scroll;
 }
 
@@ -180,6 +195,7 @@ button:focus {
 .orderList .decreaseItemNumber {
   background-color: #D6DADC;
   font-weight: 800;
+  width: 100%;
 }
 
 /* BILL */
@@ -190,7 +206,7 @@ button:focus {
   width: 100%;
   text-align: center;
   padding: 0.5rem 0;
-  font-size: 1.25rem;
+  font-size: 1.5rem;
 }
 
 .bill span {
@@ -249,6 +265,11 @@ button:focus {
   background-color: #D6DADC;
   color: #333333;
   margin: 0.25rem 0;
+}
+
+.menu button:hover,
+.menu button:active {
+  background-color: #838C91;
 }
 
 .menu button:disabled {
