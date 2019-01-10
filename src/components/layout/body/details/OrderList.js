@@ -4,7 +4,9 @@ import deleteTableItem from '../../../../actions/deleteTableItem';
 
 class OrderList extends Component {
   componentDidUpdate = () => {
-    this.refs.orderTable.scrollIntoView(false);
+    if (this.props.items.length > 0) {
+      this.refs.orderTable.scrollIntoView(false);
+    }
   }
 
   render() {
