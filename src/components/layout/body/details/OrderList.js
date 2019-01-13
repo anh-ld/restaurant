@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
 import deleteTableItem from '../../../../actions/deleteTableItem';
+import addTableItem from '../../../../actions/addTableItem';
 
 class OrderList extends Component {
   componentDidUpdate = () => {
@@ -19,7 +20,7 @@ class OrderList extends Component {
                 <th>Item</th>
                 <th>Price</th>
                 <th>Quantity</th>
-                <th>-1</th>
+                <th>Actions</th>
               </tr>
             </thead>
             <tbody>
@@ -29,12 +30,18 @@ class OrderList extends Component {
                     <td>{item.name}</td>
                     <td>{item.price} $</td>
                     <td>{item.quantity}</td>
-                    <td>
+                    <td className="itemActions">
                       <button
-                        className="decreaseItemNumber"
+                        className="itemNumber"
                         onClick={() => this.props.onDelete(this.props.selectedTable, i)}
                       >
                       -
+                      </button>
+                      <button
+                        className="itemNumber"
+                        onClick={() => this.props.onAdd(item.name, item.price, this.props.selectedTable)}
+                      >
+                        +
                       </button>
                     </td>
                   </tr>
@@ -59,6 +66,9 @@ const mapDispatchToProps = dispatch => {
   return {
     onDelete: (tableId, id) => {
       dispatch(deleteTableItem(tableId, id));
+    },
+    onAdd: (name, price, tableId) => {
+      dispatch(addTableItem(name, price, tableId));
     }
   };
 };
