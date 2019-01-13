@@ -1,8 +1,7 @@
 /* GENERAL RULES */
 @font-face {
   font-family: 'horizon_roundedbold';
-  src: url('./fonts/horizonrounded-webfont.woff2') format('woff2'),
-       url('./fonts/horizonrounded-webfont.woff') format('woff');
+  src: url('./fonts/horizonrounded-webfont.woff2') format('woff2'), url('./fonts/horizonrounded-webfont.woff') format('woff');
   font-weight: normal;
   font-style: normal;
 }
@@ -40,10 +39,9 @@ button:focus {
   padding: 0.5rem 0rem;
   margin: calc(50vh - 24px - 26px) calc(50vw - 100px);
   width: 200px;
-  background-color: #5aac44;
+  background-color: #5AAC44;
   color: #FFF;
   line-height: 2rem;
-  transition: background-color 0.25s;
 }
 
 .App #signInButton:hover,
@@ -98,14 +96,14 @@ button:focus {
   padding: 0.5rem 0rem;
   width: 120px;
   background-color: #FFF;
-  color: #5aac44;
+  color: #5AAC44;
   margin-left: 1rem;
 }
 
 .header button:hover,
 .header button:active {
   color: #FFF;
-  background-color: #5aac44;
+  background-color: #5AAC44;
 }
 
 /* SUMMARY */
@@ -178,7 +176,6 @@ button:focus {
   width: 100%;
   background-color: #D6DADC;
   color: #333333;
-  margin-bottom: 0.5rem;
 }
 
 .details #checkOutButton:hover,
@@ -189,12 +186,13 @@ button:focus {
 
 /* ORDERLIST */
 .orderList {
-  height: 232px;
+  height: 248px;
   overflow-y: scroll;
 }
 
 .orderList table {
   width: 100%;
+  position: relative;
 }
 
 .orderList table, th, td {
@@ -203,13 +201,14 @@ button:focus {
 
 .orderList th {
   text-align: left;
-  padding: 0.2rem;
-  border-bottom: 2px solid #E2E4E6;
+  padding: 0.5rem 0.2rem;
+  border-bottom: 1px solid #F8F9F9;
 }
 
 .orderList td {
   padding: 0.4rem 0.2rem;
   border-bottom: 1px solid #F8F9F9;
+  color: #333333;
 }
 
 .orderList .itemNumber {
@@ -224,11 +223,15 @@ button:focus {
   background-color: #EDEFF0;
 }
 
+.orderList .tableHeader th {
+  position: sticky;
+  top: 0;
+  background-color: #FFF;
+}
+
 /* BILL */
 .bill {
-  /* background-color: #5AAC44; */
   color: #5AAC44;
-  border-radius: 0.25rem;
   width: 100%;
   text-align: center;
   padding: 0.5rem 0;

@@ -16,7 +16,7 @@ class OrderList extends Component {
         {this.props.items.length === 0 ? "" :
           <table ref='orderTable'>
             <thead>
-              <tr>
+              <tr className="tableHeader">
                 <th>Item</th>
                 <th>Price</th>
                 <th>Quantity</th>
