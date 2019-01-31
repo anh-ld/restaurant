@@ -306,3 +306,73 @@ button:focus {
   background-color: #EDEFF0;
   cursor: not-allowed;
 }
+
+/* RESPONSIVE */
+@media only screen and (max-width: 992px) {
+  .dashboard {
+    width: 90%;
+    padding: 0 0.5rem;
+  }
+  .body > div:first-child {
+    height: 425px;
+  }
+  .orderList {
+    height: 323px;
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  h1 {
+    font-size: 1.5rem;
+  }
+  h2 {
+    font-size: 1.2rem;
+  }
+  .header h2 {
+    line-height: 2.25rem;
+  }
+  .header button {
+    font-size: 1rem;
+    margin-left: 0.25rem;
+    padding: 0.25rem;
+    width: initial;
+  }
+  .body > div:first-child {
+    display: block;
+    height: initial;
+  }
+  .details {
+    width: initial;
+    margin-right: 0;
+    margin-bottom: 1rem;
+    height: 350px;
+  }
+  .orderList {
+    height: 248px;
+  }
+  .tableLayout {
+    width: initial;
+    height: initial;
+  }
+  .tableLayout .tableButton{
+    margin-bottom: 0.5rem;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  h1 {
+    font-size: 1.2rem;
+  }
+  h2 {
+    font-size: 1rem;
+  }
+  .header h2 {
+    line-height: 1.75rem;
+  }
+  .header button {
+    font-size: 1rem;
+    margin-left: 0.25rem;
+    padding: 0.25rem;
+    width: initial;
+  }
+}
