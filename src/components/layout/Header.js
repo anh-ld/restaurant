@@ -1,14 +1,24 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import sign from '../../actions/sign';
+import clearSelectedTable from '../../actions/clearSelectedTable';
+import Modal from './header/Modal';
 
 class Header extends Component {
+  state = {
+    showAlert: false
+  }
+
   handleClick = () => {
     if (this.props.tableStatusData.includes(true)) {
-      alert("Please checkout all tables before signing out!!!");
+      this.setState({showAlert: !this.state.showAlert})
     } else {
       this.props.signOut();
     }
+  }
+
+  toggleModal = () => {
+    this.setState({showAlert: !this.state.showAlert});
   }
 
   render() {
@@ -22,6 +32,7 @@ class Header extends Component {
           <h2>{date}/{month}/{year}</h2>
           <button onClick={this.handleClick}>Sign out</button>
         </div>
+        <Modal show={this.state.showAlert} toggleModal={this.toggleModal}/>
       </div>
     );
   }
@@ -30,6 +41,7 @@ class Header extends Component {
 const mapDispatchToProps = (dispatch) => {
   return {
     signOut: () => {
+      dispatch(clearSelectedTable());
       dispatch(sign());
     }
   }

@@ -1,4 +1,4 @@
-A simple restaurant dashboard using React and Redux.
+A simple restaurant ordering system using React and Redux.
 
 Menu Items by [Pizza4P's](https://pizza4ps.com/menu/).
 

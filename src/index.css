@@ -106,6 +106,28 @@ button:focus {
   background-color: #5AAC44;
 }
 
+/* MODAL */
+.backdrop {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 3rem;
+  z-index: 1;
+  
+}
+
+.modal {
+  background-color: #fff;
+  border-radius: 0.25rem;
+  padding: 1rem;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+}
+
 /* SUMMARY */
 .summary {
   list-style: none;
@@ -311,7 +333,7 @@ button:focus {
 @media only screen and (max-width: 992px) {
   .dashboard {
     width: 90%;
-    padding: 0 0.5rem;
+    padding: 0 0.5rem 1rem 0.5rem;
   }
   .body > div:first-child {
     height: 425px;
@@ -322,6 +344,10 @@ button:focus {
 }
 
 @media only screen and (max-width: 767px) {
+  .dashboard {
+    width: 95%;
+    padding-bottom: 0.5rem;
+  }
   h1 {
     font-size: 1.5rem;
   }
@@ -332,19 +358,23 @@ button:focus {
     line-height: 2.25rem;
   }
   .header button {
-    font-size: 1rem;
+    font-size: 1.2rem;
     margin-left: 0.25rem;
     padding: 0.25rem;
     width: initial;
   }
+  .backdrop {
+    padding: 2rem;
+  }
   .body > div:first-child {
     display: block;
     height: initial;
+    margin-bottom: 0.5rem;
   }
   .details {
     width: initial;
     margin-right: 0;
-    margin-bottom: 1rem;
+    margin-bottom: 0.5rem;
     height: 350px;
   }
   .orderList {
@@ -371,8 +401,12 @@ button:focus {
   }
   .header button {
     font-size: 1rem;
-    margin-left: 0.25rem;
-    padding: 0.25rem;
     width: initial;
+  }
+  .backdrop {
+    padding: 1rem;
+  }
+  .modal {
+    padding: 0.5rem;
   }
 }
