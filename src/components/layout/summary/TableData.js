@@ -12,7 +12,6 @@ class TableData extends Component {
         </div>
       )
     } else {
-      data.reverse();
       for (let i = 0; i < data.length; i++) {
         tableData.push(
           <tr key={i}>

@@ -68,8 +68,10 @@ const mapDispatchToProps = (dispatch) => {
       } else {
         let dataHistoryCopy = dataHistory.slice();
         let lastItem = dataHistoryCopy.pop();
+        dataHistoryCopy.push({date, month, year, money: total + lastItem.money, customer: lastItem.customer+1});
         db.collection('db').doc(uid).set({
-          data: [...dataHistoryCopy, {date, month, year, money: total + lastItem.money, customer: lastItem.customer+1}]
+          // data: [...dataHistoryCopy, {date, month, year, money: total + lastItem.money, customer: lastItem.customer+1}]
+          data: dataHistoryCopy
         });
       }
       

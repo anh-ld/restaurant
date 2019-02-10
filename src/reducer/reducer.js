@@ -149,7 +149,9 @@ const dataHistory = (state = [], action) => {
       } else {
         let stateCopy = state.slice();
         let lastItem = stateCopy.pop();
-        return [...stateCopy, {date, month, year, money: action.amount + lastItem.money, customer: lastItem.customer+1}];
+        stateCopy.push({date, month, year, money: action.amount + lastItem.money, customer: lastItem.customer+1});
+        // return [...stateCopy, {date, month, year, money: action.amount + lastItem.money, customer: lastItem.customer+1}];
+        return stateCopy;
       }
     case "SIGN_OUT":
       return [];
