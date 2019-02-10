@@ -1,5 +1,9 @@
 import { combineReducers } from 'redux';
 
+const year = new Date().getFullYear();
+const month = new Date().getMonth() + 1;
+const date = new Date().getDate();
+
 // initiate data for table data
 let initialTableData = [];
 for (let i = 0; i < 16; i++) {
@@ -79,40 +83,89 @@ const selectedTable = (state = null, action) => {
   }
 }
 
+// money reducer
 const moneyEarned = (state = 0, action) => {
   switch(action.type) {
+    case "FETCH_DATA":
+      const data = action.payload.find(item => {
+        return item.date === date && item.month === month && item.year === year;
+      })
+      if (data) {
+        return data.money;
+      }
+      return state;
     case "INCREMENT_MONEY_EARNED":
       return state + action.amount;
+    case "SIGN_OUT":
+      return 0;
     default:
       return state;
   }
 }
 
+// customer number reducer
 const totalCustomer = (state = 0, action) => {
   switch(action.type) {
+    case "FETCH_DATA":
+      const data = action.payload.find(item => {
+        return item.date === date && item.month === month && item.year === year;
+      })
+      if (data) {
+        return data.customer;
+      }
+      return state;
     case "ADD_CUSTOMER":
       return state + 1;
+    case "SIGN_OUT":
+      return 0;
     default:
       return state;
   }
 }
 
-const sign = (state = false, action) => {
+// user info reducer
+const user = (state = null, action) => {
   switch(action.type) {
-    case "SIGN":
-      return !state;
+    case "FETCH_USER":
+      return action.payload;
+    case "SIGN_OUT":
+      return null;
+    default:
+      return state;
+  }
+}
+
+// data from the past reducer
+const dataHistory = (state = [], action) => {
+  switch(action.type) {
+    case "FETCH_DATA":
+      return action.payload;
+    case "INCREMENT_MONEY_EARNED":
+      let todayData = state.find(item => {
+        return item.date === date && item.month === month && item.year === year;
+      });
+      if (todayData === undefined) {
+        return [...state, {date, month, year, money: action.amount, customer: 1}];
+      } else {
+        let stateCopy = state.slice();
+        let lastItem = stateCopy.pop();
+        return [...stateCopy, {date, month, year, money: action.amount + lastItem.money, customer: lastItem.customer+1}];
+      }
+    case "SIGN_OUT":
+      return [];
     default:
       return state;
   }
 }
 
 const reducer = combineReducers({
-  moneyEarned,
   selectedTable,
   tableStatusData,
   tableData,
   totalCustomer,
-  sign
+  moneyEarned,
+  user,
+  dataHistory
 });
 
 export default reducer;

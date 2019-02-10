@@ -1,17 +1,15 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import sign from '../actions/sign';
+import { signIn } from '../actions/signInWithGoogle';
 
 class SignInButton extends Component {
   state = {
-    buttonName: "Sign in"
+    buttonName: "Sign in with Google"
   }
 
   handleClick = () => {
     this.setState({buttonName: "Signing in..."});
-    setTimeout(() => {
-      this.props.handleSignIn();
-    }, 1000);
+    this.props.signIn();
   }
 
   render() {
@@ -26,12 +24,4 @@ class SignInButton extends Component {
   }
 }
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    handleSignIn: () => {
-      dispatch(sign());
-    }
-  }
-}
-
-export default connect(null, mapDispatchToProps)(SignInButton);
+export default connect(null, { signIn })(SignInButton);

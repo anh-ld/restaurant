@@ -3,12 +3,17 @@ import { connect } from 'react-redux';
 import SignInButton from './components/SignInButton';
 import Dashboard from './components/Dashboard';
 import Credit from './components/Credit';
+import { fetchUser } from './actions/fetchUser';
 
 class App extends Component {
+  componentWillMount() {
+    this.props.fetchUser();
+  }
+
   render() {
     return (
       <div className="App">
-        {this.props.sign === false ? 
+        {this.props.user === null ? 
           <React.Fragment>
             <SignInButton />
             <Credit />
@@ -21,8 +26,8 @@ class App extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    sign: state.sign
+    user: state.user
   }
 }
 
-export default connect(mapStateToProps, null)(App);
+export default connect(mapStateToProps, { fetchUser })(App);

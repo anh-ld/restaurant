@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import sign from '../../actions/sign';
-import clearSelectedTable from '../../actions/clearSelectedTable';
 import Modal from './header/Modal';
+import { signOut } from '../../actions/signOut';
 
 class Header extends Component {
   state = {
@@ -30,20 +29,11 @@ class Header extends Component {
         <h1>Hanoi Pizza Restaurant</h1>
         <div>
           <h2>{date}/{month}/{year}</h2>
-          <button onClick={this.handleClick}>Sign out</button>
+          <button onClick={this.handleClick}>Sign Out</button>
         </div>
         <Modal show={this.state.showAlert} toggleModal={this.toggleModal}/>
       </div>
     );
-  }
-}
-
-const mapDispatchToProps = (dispatch) => {
-  return {
-    signOut: () => {
-      dispatch(clearSelectedTable());
-      dispatch(sign());
-    }
   }
 }
 
@@ -53,4 +43,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Header);
+export default connect(mapStateToProps, { signOut })(Header);
