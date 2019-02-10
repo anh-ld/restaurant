@@ -39,7 +39,12 @@ class Summary extends Component {
         </div>
         <div>
           <h2>{this.props.user.displayName}</h2>
-          <button onClick={this.toggleModal}>History</button>
+          <button
+            className="historyButton"
+            onClick={this.toggleModal}
+          >
+            History
+          </button>
         </div>
         <DataHistory show={this.state.showDataHistory} toggleModal={this.toggleModal} />
       </div>
