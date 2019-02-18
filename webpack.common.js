@@ -16,7 +16,7 @@ module.exports = {
   entry: './src/index.js',
   output: {
     path: path.resolve(__dirname, 'build'),
-    filename: '[name].js'
+    filename: '[name].[contenthash].js'
   },
   module: {
     rules: [
@@ -52,7 +52,6 @@ module.exports = {
         }
       }
     }
-    // runtimeChunk: 'single'
   },
   plugins: [
     new CleanWebpackPlugin(['build/*']),
