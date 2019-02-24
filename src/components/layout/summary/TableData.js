@@ -4,25 +4,36 @@ import { connect } from 'react-redux';
 class TableData extends Component {
   render() {
     const { data } = this.props;
-    let tableData = [];
     if (data.length === 0) {
       return (
         <div className="tableData">
           <h3>You have no previous data.</h3>
         </div>
       )
-    } else {
-      for (let i = 0; i < data.length; i++) {
-        tableData.push(
-          <tr key={i}>
-            <th scope="row">{i + 1}</th>
-            <td>{data[i].date}/{data[i].month}/{data[i].year}</td>
-            <td>{data[i].customer}</td>
-            <td>{data[i].money}</td>
-          </tr>
-        )
-      }
     }
+
+    const year = new Date().getFullYear();
+    const month = new Date().getMonth() + 1;
+    const date = new Date().getDate();
+    const reversedData = data.slice().reverse();
+    const tableData = reversedData.map((item, i) => {
+      return (
+        <tr key={i}>
+          <th scope="row">{i + 1}</th>
+          <td>
+            {item.month === month && item.year === year ?
+            item.date === date ?
+            "Today" :
+            item.date === date - 1 ?
+            "Yesterday" :
+            `${item.month}/${item.date}/${item.year}` :
+            `${item.month}/${item.date}/${item.year}`}
+          </td>
+          <td>{item.customer}</td>
+          <td>{item.money}</td>
+        </tr>
+      )
+    });
     return (
       <table className="tableData">
         <thead>
