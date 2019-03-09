@@ -1,7 +1,54 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
-import deleteTableItem from '../../../../actions/deleteTableItem';
-import addTableItem from '../../../../actions/addTableItem';
+import deleteTableItem from '../../../../actions/orderActions/deleteTableItem';
+import addTableItem from '../../../../actions/orderActions/addTableItem';
+import styled from 'styled-components';
+import media from '../../../../utils/mediaQueriesStyling';
+import buttonMainStyle from '../../../../utils/buttonStyling';
+
+const $OrderList = styled.div`
+  height: 248px;
+  overflow-y: scroll;
+  ${media.desktop`
+    height: 323px;
+  `}
+  ${media.tablet`
+    height: 248px;
+  `}
+`
+
+const Table = styled.table`
+  width: 100%;
+  position: relative;
+`
+
+const TableHead = styled.th`
+  border-collapse: collapse;
+  text-align: left;
+  padding: 0.5rem 0.2rem;
+  border-bottom: 1px solid #EDEFF0;
+  position: sticky;
+  top: 0;
+  background-color: #FFF;
+`
+
+const TableData = styled.td`
+  border-collapse: collapse;
+  padding: 0.4rem 0.2rem;
+  border-bottom: 1px solid #F8F9F9;
+  color: #333333;
+`
+
+const ActionButton = styled.button`
+  ${buttonMainStyle}
+  background-color: #F8F9F9;
+  font-weight: 900;
+  width: 50%;
+  font-size: 1rem;
+  &:hover, &:active {
+    background-color: #EDEFF0;
+  }
+`
 
 class OrderList extends Component {
   componentDidUpdate = () => {
@@ -11,46 +58,47 @@ class OrderList extends Component {
   }
 
   render() {
+    const { items, selectedTable, onAdd, onDelete } = this.props;
     return (
-      <div className="orderList">
-        {this.props.items.length === 0 ? "" :
-          <table ref='orderTable'>
+      <$OrderList>
+        {items.length === 0 ? null :
+          <Table ref='orderTable'>
             <thead>
-              <tr className="tableHeader">
-                <th>Item</th>
-                <th>Price</th>
-                <th>Quantity</th>
-                <th>Actions</th>
+              <tr>
+                <TableHead>Item</TableHead>
+                <TableHead>Price</TableHead>
+                <TableHead>Quantity</TableHead>
+                <TableHead>Actions</TableHead>
               </tr>
             </thead>
             <tbody>
-              {this.props.items.map((item, i) => {
+              {items.map((item, i) => {
                 return (
                   <tr key={i}>
-                    <td>{item.name}</td>
-                    <td>{item.price} $</td>
-                    <td>{item.quantity}</td>
-                    <td className="itemActions">
-                      <button
+                    <TableData>{item.name}</TableData>
+                    <TableData>{item.price} $</TableData>
+                    <TableData>{item.quantity}</TableData>
+                    <TableData>
+                      <ActionButton
                         className="itemNumber"
-                        onClick={() => this.props.onDelete(this.props.selectedTable, i)}
+                        onClick={() => onDelete(selectedTable, i)}
                       >
                       -
-                      </button>
-                      <button
+                      </ActionButton>
+                      <ActionButton
                         className="itemNumber"
-                        onClick={() => this.props.onAdd(item.name, item.price, this.props.selectedTable)}
+                        onClick={() => onAdd(item.name, item.price, selectedTable)}
                       >
                         +
-                      </button>
-                    </td>
+                      </ActionButton>
+                    </TableData>
                   </tr>
                 )
               })}
             </tbody>
-          </table>
+          </Table>
         }
-      </div>
+      </$OrderList>
     );
   }
 }

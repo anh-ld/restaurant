@@ -1,33 +1,69 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
-import toggleTable from '../../../../actions/toggleTable';
-import incrementMoneyEarned from '../../../../actions/increaseMoneyEarned';
-import clearSelectedTable from '../../../../actions/clearSelectedTable';
-import addCustomer from '../../../../actions/addCustomer';
-import { db } from '../../../../config/firebase';
+import toggleTable from '../../../../actions/orderActions/toggleTable';
+import checkoutTable from '../../../../actions/orderActions/checkoutTable';
+import clearSelectedTable from '../../../../actions/orderActions/clearSelectedTable';
+import styled from 'styled-components';
+import buttonMainStyle from '../../../../utils/buttonStyling';
+
+const Button = styled.button`
+  ${buttonMainStyle}
+  font-size: 1.5rem;
+  padding: 0.5rem 0rem;
+  width: 100%;
+`
+
+const CheckInButton = styled(Button)`
+  background-color: #5aac44;
+  color: #FFF;
+  &:hover, &:active {
+    background-color: #519839;
+  }
+  &:disabled {
+    color: #a5acb0;
+    background-color: #EDEFF0;
+    cursor: not-allowed;
+  }
+`
+
+const CheckOutButton = styled(Button)`
+  background-color: #D6DADC;
+  color: #333333;
+  &:hover, &:active {
+    background-color: #838C91;
+    color: #FFF;
+  }
+`
 
 class ToggleTableButton extends Component {
   handleClick = () => {
-    let { selectedTable, tableData, uid, dataHistory } = this.props; 
-    if (this.props.tableStatus) {
-      this.props.onCheckOut(selectedTable, tableData, uid, dataHistory);
+    const { selectedTable, tableData, uid, dataHistory, tableStatus, onCheckOut, onToggle } = this.props; 
+    if (tableStatus) {
+      onCheckOut(selectedTable, tableData, uid, dataHistory);
     }
-    this.props.onToggle(this.props.selectedTable);
+    onToggle(selectedTable);
   }
 
   render() {
+    const { tableStatus, selectedTable } = this.props;
+    if (tableStatus) {
+      return (
+        <CheckOutButton
+          onClick={this.handleClick}
+        >
+          Checkout #{selectedTable}
+        </CheckOutButton>
+      );
+    }
     return (
-      <button 
-        id={this.props.tableStatus ?"checkOutButton" : "checkInButton"}
-        disabled={this.props.selectedTable === null}
+      <CheckInButton
+        disabled={selectedTable === null}
         onClick={this.handleClick}
       >
-        {this.props.tableStatus ? 
-        "Checkout #" + this.props.selectedTable :
-        this.props.selectedTable === null ?
-        "Checkin" :
-        "Checkin #" + this.props.selectedTable}
-      </button>
+        {selectedTable ?
+        "Checkin #" + selectedTable :
+        "Checkin"}
+      </CheckInButton>
     );
   }
 }
@@ -48,36 +84,14 @@ const mapDispatchToProps = (dispatch) => {
       dispatch(toggleTable(id));
     },
     onCheckOut: (id, tableData, uid, dataHistory) => {
-      const year = new Date().getFullYear();
-      const month = new Date().getMonth() + 1;
-      const date = new Date().getDate();
       let total = 0;
-
       for (let i = 0; i < tableData[id].length; i++) {
         total += tableData[id][i].price * tableData[id][i].quantity;
       }
 
-      let todayData = dataHistory.find(item => {
-        return item.date === date && item.month === month && item.year === year;
-      });
-
-      if (todayData === undefined) {
-        db.collection('db').doc(uid).set({
-          data: [...dataHistory, {date, month, year, money: total, customer: 1}]
-        });
-      } else {
-        let dataHistoryCopy = dataHistory.slice();
-        let lastItem = dataHistoryCopy.pop();
-        dataHistoryCopy.push({date, month, year, money: total + lastItem.money, customer: lastItem.customer+1});
-        db.collection('db').doc(uid).set({
-          // data: [...dataHistoryCopy, {date, month, year, money: total + lastItem.money, customer: lastItem.customer+1}]
-          data: dataHistoryCopy
-        });
-      }
-      
       dispatch(clearSelectedTable());
-      dispatch(incrementMoneyEarned(total));
-      dispatch(addCustomer());
+      dispatch(checkoutTable(total, dataHistory, uid));
+      // dispatch(addCustomer());
     }
   };
 };

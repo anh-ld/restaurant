@@ -6,5 +6,5 @@ Color Palette by [Nachos](https://design.trello.com/).
 
 Font Horizon Rounded by [Medialoot](https://medialoot.com/item/horizon-free-bold-rounded-font/).
 
-**<u>Notice</u>**: In order to run this app, you need to provide your own *Firebase initialization* inside *`src/config/firebaseConfig.js`* 
+**<u>Notice</u>**: In order to run this app, you need to provide your own [Firebase initialization](https://firebase.google.com/docs/web/setup) inside *`src/config/firebaseConfig.js`* 
 

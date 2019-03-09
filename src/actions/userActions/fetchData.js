@@ -1,4 +1,4 @@
-import { db } from '../config/firebase';
+import { db } from '../../config/firebase';
 
 export const fetchData = (uid) => dispatch => {
   db.collection('db').doc(uid).get()

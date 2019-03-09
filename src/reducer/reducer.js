@@ -40,7 +40,6 @@ const tableData = (state = initialTableData, action) => {
       for (let i = 0; i < 16; i++) {
         stateCopy1.push(state[i].slice());
       }
-      // stateCopy1[action.tableId].splice(action.id,1);
       if (stateCopy1[action.tableId][action.id].quantity === 1) {
         stateCopy1[action.tableId].splice(action.id,1);
       } else {
@@ -94,7 +93,7 @@ const moneyEarned = (state = 0, action) => {
         return data.money;
       }
       return state;
-    case "INCREMENT_MONEY_EARNED":
+    case "CHECK_OUT":
       return state + action.amount;
     case "SIGN_OUT":
       return 0;
@@ -114,7 +113,7 @@ const totalCustomer = (state = 0, action) => {
         return data.customer;
       }
       return state;
-    case "ADD_CUSTOMER":
+    case "CHECK_OUT":
       return state + 1;
     case "SIGN_OUT":
       return 0;
@@ -140,19 +139,8 @@ const dataHistory = (state = [], action) => {
   switch(action.type) {
     case "FETCH_DATA":
       return action.payload;
-    case "INCREMENT_MONEY_EARNED":
-      let todayData = state.find(item => {
-        return item.date === date && item.month === month && item.year === year;
-      });
-      if (todayData === undefined) {
-        return [...state, {date, month, year, money: action.amount, customer: 1}];
-      } else {
-        let stateCopy = state.slice();
-        let lastItem = stateCopy.pop();
-        stateCopy.push({date, month, year, money: action.amount + lastItem.money, customer: lastItem.customer+1});
-        // return [...stateCopy, {date, month, year, money: action.amount + lastItem.money, customer: lastItem.customer+1}];
-        return stateCopy;
-      }
+    case "CHECK_OUT":
+      return action.data;
     case "SIGN_OUT":
       return [];
     default:

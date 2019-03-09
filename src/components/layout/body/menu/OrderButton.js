@@ -1,16 +1,37 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
-import addTableItem from '../../../../actions/addTableItem';
+import addTableItem from '../../../../actions/orderActions/addTableItem';
+import styled from 'styled-components';
+import buttonMainStyle from '../../../../utils/buttonStyling';
+
+const $OrderButton = styled.button`
+  ${buttonMainStyle}
+  font-size: 1rem;
+  width: 100px;
+  height: 50px;
+  background-color: #E2E4E6;
+  color: #333333;
+  margin: 0.25rem 0;
+  &:hover, &:active {
+    background-color: #D6DADC;
+  }
+  &:disabled {
+    color: #a5acb0;
+    background-color: #EDEFF0;
+    cursor: not-allowed;
+  }
+`
 
 class OrderButton extends Component {
   render() {
+    const  { selectedTable, tableStatusData, onAdd, name, price } = this.props;
     return (
-      <button
-        disabled={this.props.selectedTable === null || !this.props.tableStatusData[this.props.selectedTable]}
-        onClick={() => this.props.onAdd(this.props.name, this.props.price, this.props.selectedTable)}
+      <$OrderButton
+        disabled={selectedTable === null || !tableStatusData[selectedTable]}
+        onClick={() => onAdd(name, price, selectedTable)}
       >
-        {this.props.name}
-      </button>
+        {name}
+      </$OrderButton>
     );
   }
 }

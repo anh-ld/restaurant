@@ -1,10 +1,27 @@
 import React, { Component } from 'react';
 import TableButton from './tableLayout/TableButton';
+import styled from 'styled-components';
+import media from '../../../utils/mediaQueriesStyling';
+
+const $Layout = styled.div`
+  background-color: #FFF;
+  padding: 0.5rem;
+  border-radius: 0.25rem;
+  width: calc(960px - 332px);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  ${media.tablet`
+    width: initial;
+    height: initial;
+  `}
+`
 
 class TableLayout extends Component {
   render() {
     return (
-      <div className="tableLayout">
+      <$Layout>
         <TableButton id={1}/>
         <TableButton id={2}/>
         <TableButton id={3}/>
@@ -20,7 +37,7 @@ class TableLayout extends Component {
         <TableButton id={13}/>
         <TableButton id={14}/>
         <TableButton id={15}/>
-      </div>
+      </$Layout>
     );
   }
 }
