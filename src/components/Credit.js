@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 
 const $Credit = styled.p`
@@ -17,20 +17,18 @@ const Link = styled.a`
   }
 `
 
-class Credit extends Component {
-  render() {
-    return (
-      <$Credit>
-        made by&nbsp;
-        <Link
-          href="https://github.com/culee" target="_blank"
-          rel="noopener noreferrer"
-        >
-          @culee
-        </Link>
-      </$Credit>
-    );
-  }
-}
+const Credit = () => {
+  return (
+    <$Credit>
+      made by&nbsp;
+      <Link
+        href="https://github.com/culee" target="_blank"
+        rel="noopener noreferrer"
+      >
+        @culee
+      </Link>
+    </$Credit>
+  );
+};
 
 export default Credit;

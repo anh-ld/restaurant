@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import TableButton from './tableLayout/TableButton';
 import styled from 'styled-components';
 import media from '../../../utils/mediaQueriesStyling';
@@ -18,28 +18,26 @@ const $Layout = styled.div`
   `}
 `
 
-class TableLayout extends Component {
-  render() {
-    return (
-      <$Layout>
-        <TableButton id={1}/>
-        <TableButton id={2}/>
-        <TableButton id={3}/>
-        <TableButton id={4}/>
-        <TableButton id={5}/>
-        <TableButton id={6}/>
-        <TableButton id={7}/>
-        <TableButton id={8}/>
-        <TableButton id={9}/>
-        <TableButton id={10}/>
-        <TableButton id={11}/>
-        <TableButton id={12}/>
-        <TableButton id={13}/>
-        <TableButton id={14}/>
-        <TableButton id={15}/>
-      </$Layout>
-    );
-  }
-}
+const TableLayout = () => {
+  return (
+    <$Layout>
+      <TableButton id={1}/>
+      <TableButton id={2}/>
+      <TableButton id={3}/>
+      <TableButton id={4}/>
+      <TableButton id={5}/>
+      <TableButton id={6}/>
+      <TableButton id={7}/>
+      <TableButton id={8}/>
+      <TableButton id={9}/>
+      <TableButton id={10}/>
+      <TableButton id={11}/>
+      <TableButton id={12}/>
+      <TableButton id={13}/>
+      <TableButton id={14}/>
+      <TableButton id={15}/>
+    </$Layout>
+  );
+};
 
 export default TableLayout;

@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { connect } from "react-redux";
 import selectTable from '../../../../actions/orderActions/selectTable';
 import styled from 'styled-components';
@@ -30,28 +30,25 @@ const SelectedTableButton = styled(Button)`
   color: #333333;
 `
 
-class TableButton extends Component {
-  render() {
-    const { tableStatusData, id, onSelect } = this.props;
-    if (tableStatusData[id]) {
-      return (
-        <SelectedTableButton
-          onClick={() => onSelect(id)}
-        >
-          {id}
-        </SelectedTableButton>
-      )
-    }
-
+const TableButton = ({ tableStatusData, id, onSelect }) => {
+  if (tableStatusData[id]) {
     return (
-      <$TableButton
+      <SelectedTableButton
         onClick={() => onSelect(id)}
       >
         {id}
-      </$TableButton>
-    );
+      </SelectedTableButton>
+    )
   }
-}
+
+  return (
+    <$TableButton
+      onClick={() => onSelect(id)}
+    >
+      {id}
+    </$TableButton>
+  );
+};
 
 const mapStateToProps = (state) => {
   return {

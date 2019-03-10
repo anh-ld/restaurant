@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { connect } from "react-redux";
 import addTableItem from '../../../../actions/orderActions/addTableItem';
 import styled from 'styled-components';
@@ -22,19 +22,16 @@ const $OrderButton = styled.button`
   }
 `
 
-class OrderButton extends Component {
-  render() {
-    const  { selectedTable, tableStatusData, onAdd, name, price } = this.props;
-    return (
-      <$OrderButton
-        disabled={selectedTable === null || !tableStatusData[selectedTable]}
-        onClick={() => onAdd(name, price, selectedTable)}
-      >
-        {name}
-      </$OrderButton>
-    );
-  }
-}
+const OrderButton = ({ selectedTable, tableStatusData, onAdd, name, price }) => {
+  return (
+    <$OrderButton
+      disabled={selectedTable === null || !tableStatusData[selectedTable]}
+      onClick={() => onAdd(name, price, selectedTable)}
+    >
+      {name}
+    </$OrderButton>
+  );
+};
 
 const mapStateToProps = state => {
   return {

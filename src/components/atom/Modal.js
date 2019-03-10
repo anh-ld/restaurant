@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import media from '../../utils/mediaQueriesStyling';
 import buttonMainStyle from '../../utils/buttonStyling';
@@ -54,29 +54,26 @@ const CloseButton = styled.button`
   }
 `
 
-class Modal extends Component {
-  render() {
-    const { show, toggleModal, title } = this.props;
-    if(!show) {
-      return null;
-    }
-
-    return (
-      <BackDrop>
-        <$Modal>
-          <Header>
-            <Title>{title}</Title>
-            <CloseButton
-              onClick={toggleModal}
-            >
-              x
-            </CloseButton>
-          </Header>
-          {this.props.children}
-        </$Modal>
-      </BackDrop>
-    );
+const Modal = ({ show, toggleModal, title, children }) => {
+  if(!show) {
+    return null;
   }
-}
+
+  return (
+    <BackDrop>
+      <$Modal>
+        <Header>
+          <Title>{title}</Title>
+          <CloseButton
+            onClick={toggleModal}
+          >
+            x
+          </CloseButton>
+        </Header>
+        {children}
+      </$Modal>
+    </BackDrop>
+  );
+};
 
 export default Modal;

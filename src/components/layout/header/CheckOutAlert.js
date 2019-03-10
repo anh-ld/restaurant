@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import media from '../../../utils/mediaQueriesStyling';
 
@@ -11,12 +11,10 @@ const $CheckOutAlert = styled.h2`
   `}
 `
 
-class CheckOutAlert extends Component {
-  render() {
-    return (
-      <$CheckOutAlert>Please checkout before signing out!</$CheckOutAlert>
-    );
-  }
-}
+const CheckOutAlert = () => {
+  return (
+    <$CheckOutAlert>Please checkout before signing out!</$CheckOutAlert>
+  );
+};
 
 export default CheckOutAlert;

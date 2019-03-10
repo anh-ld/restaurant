@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import ToggleTableButton from './details/ToggleTableButton';
 import OrderList from './details/OrderList';
 import { connect } from "react-redux";
@@ -20,18 +20,15 @@ const $Details = styled.div`
   `}
 `
 
-class Details extends Component {
-  render() {
-    const { tableStatus } = this.props;
-    return (
-      <$Details>
-        <ToggleTableButton />
-        {tableStatus ? <OrderList /> : null}
-        {tableStatus ? <Bill /> : null}
-      </$Details>
-    );
-  }
-}
+const Details = ({ tableStatus }) => {
+  return (
+    <$Details>
+      <ToggleTableButton />
+      {tableStatus ? <OrderList /> : null}
+      {tableStatus ? <Bill /> : null}
+    </$Details>
+  );
+};
 
 const mapStateToProps = (state) => {
   return {

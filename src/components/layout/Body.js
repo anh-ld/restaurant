@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Details from './body/Details';
 import TableLayout from './body/TableLayout';
 import Menu from './body/Menu';
@@ -20,18 +20,16 @@ const Wrapper = styled.div`
   `}
 `
 
-class Body extends Component {
-  render() {
-    return (
-      <React.Fragment>
-        <Wrapper>
-          <Details />
-          <TableLayout />
-        </Wrapper>
-        <Menu />
-      </React.Fragment>
-    );
-  }
-}
+const Body = () => {
+  return (
+    <React.Fragment>
+      <Wrapper>
+        <Details />
+        <TableLayout />
+      </Wrapper>
+      <Menu />
+    </React.Fragment>
+  );
+};
 
 export default Body;

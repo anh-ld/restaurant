@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
 
@@ -13,20 +13,17 @@ const Unit = styled.span`
   font-size: 1rem;
 `
 
-class Bill extends Component {
-  render() {
-    let total = 0;
-    const { items } = this.props;
-    for (let i = 0; i < items.length; i++) {
-      total += items[i].price * items[i].quantity;
-    }
-    return (
-      <$Bill>
-        Total: {total}<Unit>$</Unit>
-      </$Bill>
-    );
+const Bill = ({ items }) => {
+  let total = 0;
+  for (let i = 0; i < items.length; i++) {
+    total += items[i].price * items[i].quantity;
   }
-}
+  return (
+    <$Bill>
+      Total: {total}<Unit>$</Unit>
+    </$Bill>
+  );
+};
 
 const mapStateToProps = (state) => {
   return {

@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import OrderButton from './menu/OrderButton';
 import menu from '../../../utils/menu';
 import styled from 'styled-components';
@@ -12,16 +12,14 @@ const $Menu = styled.div`
   justify-content: space-between;
 `
 
-class Menu extends Component {
-  render() {
-    return (
-      <$Menu>
-        {menu.map((item, index) => {
-          return <OrderButton name={item.name} price={item.price} key={index}/>
-        })}
-      </$Menu>
-    );
-  }
-}
+const Menu = () => {
+  return (
+    <$Menu>
+      {menu.map((item, index) => {
+        return <OrderButton name={item.name} price={item.price} key={index}/>
+      })}
+    </$Menu>
+  );
+};
 
 export default Menu;

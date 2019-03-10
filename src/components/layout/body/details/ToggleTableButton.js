@@ -91,7 +91,6 @@ const mapDispatchToProps = (dispatch) => {
 
       dispatch(clearSelectedTable());
       dispatch(checkoutTable(total, dataHistory, uid));
-      // dispatch(addCustomer());
     }
   };
 };
