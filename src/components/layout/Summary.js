@@ -37,6 +37,7 @@ const Title = styled.p`
   font-weight: 600;
   ${media.phone`
     font-size: 0.7rem;
+    margin: 0;
   `}
 `
 

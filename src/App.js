@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import SignIn from './components/SignIn';
-import Dashboard from './components/Dashboard';
 import Credit from './components/Credit';
+import Loading from './components/atom/Loading';
 import { fetchUser } from './actions/userActions/fetchUser';
 import styled from 'styled-components';
+
+const Dashboard = React.lazy(() => import('./components/Dashboard'));
 
 const $App = styled.div`
   min-height: 100vh;
@@ -17,15 +19,17 @@ class App extends Component {
 
   render() {
     const { user } = this.props;
-    // console.log(user);
     return (
       <$App>
         {user === null ? 
-          <React.Fragment>
-            <SignIn />
-            <Credit />
-          </React.Fragment> : 
-        <Dashboard />}
+        <React.Suspense fallback={<Loading />}>
+          <SignIn />
+          <Credit />
+        </React.Suspense> : 
+        <React.Suspense fallback={<Loading />}>
+          <Dashboard />
+        </React.Suspense>
+        }
       </$App>
     );
   }
