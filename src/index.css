@@ -1,6 +1,7 @@
 /* GENERAL RULES */
 @font-face {
   font-family: 'horizon_roundedbold';
+  font-display: swap;
   src: url('./fonts/horizonrounded-webfont.woff2') format('woff2'), url('./fonts/horizonrounded-webfont.woff') format('woff');
   font-weight: normal;
   font-style: normal;

@@ -3,6 +3,7 @@ const HtmlWebPackPlugin = require("html-webpack-plugin");
 const DashboardPlugin = require("webpack-dashboard/plugin");
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const RobotstxtPlugin = require("robotstxt-webpack-plugin");
 
 const htmlWebpackPlugin = new HtmlWebPackPlugin({
   template: "template/index.html",
@@ -10,6 +11,10 @@ const htmlWebpackPlugin = new HtmlWebPackPlugin({
   favicon: 'template/favicon.ico',
   meta: {viewport: 'width=device-width, initial-scale=1, shrink-to-fit=no'}
 });
+
+const options = {
+  filePath: './robots.txt'
+};
 
 module.exports = {
   entry: './src/index.js',
@@ -55,6 +60,7 @@ module.exports = {
   plugins: [
     new CleanWebpackPlugin(['build/*']),
     htmlWebpackPlugin,
+    new RobotstxtPlugin(options),
     new DashboardPlugin()
   ]
 };
