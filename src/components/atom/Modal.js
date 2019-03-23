@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import media from '../../utils/mediaQueriesStyling';
-import buttonMainStyle from '../../utils/buttonStyling';
+import { buttonMainStyle, media } from '../../utils/styling';
 
 const BackDrop = styled.div`
   position: fixed;
@@ -18,10 +17,10 @@ const BackDrop = styled.div`
   ${media.phone`
     padding: 1rem;
   `}
-`
+`;
 
 const $Modal = styled.div`
-  background-color: #fff;
+  background-color: #FFF;
   border-radius: 0.25rem;
   padding: 1rem;
   margin: 0 auto;
@@ -29,30 +28,30 @@ const $Modal = styled.div`
   ${media.phone`
     padding: 0.5rem;
   `}
-`
+`;
 
 const Header = styled.div`
   display: flex;
   justify-content: space-between;
-`
+`;
 
 const Title = styled.h2`
   line-height: initial;
   display: block;
   margin: 0;
-  color: #676D70;
-`
+  color: #CD5A91;
+`;
 
 const CloseButton = styled.button`
   ${buttonMainStyle}
   font-size: 1.5rem;
   margin-left: 1rem;
-  background-color: #5AAC44;
+  background-color: #E76EB1;
   color: #FFF;
   &:hover, &:active {
-    background-color: #519839;
+    background-color: #CD5A91;
   }
-`
+`;
 
 const Modal = ({ show, toggleModal, title, children }) => {
   if(!show) {

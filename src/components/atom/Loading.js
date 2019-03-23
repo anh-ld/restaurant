@@ -1,9 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
-import media from '../../utils/mediaQueriesStyling';
+import { media } from '../../utils/styling';
 
 const $Spinner = styled.h1`
-  color: #519839;
+  color: #CD5A91;
   text-align: center;
   margin: 0 auto;
   padding: calc(50vh - 1.5rem) 0;
@@ -13,10 +13,10 @@ const $Spinner = styled.h1`
   ${media.phone`
     font-size: 1.15rem;
   `}
-`
+`;
 
 const Loading = () => (
-  <$Spinner>Baking cake...er...I mean loading, yeah loading...</$Spinner>
+  <$Spinner>loading...</$Spinner>
 );
 
 export default Loading;

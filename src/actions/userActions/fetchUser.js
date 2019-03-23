@@ -10,7 +10,7 @@ export const fetchUser = () => dispatch => {
     } else {
       dispatch({
         type: "FETCH_USER",
-        payload: null
+        payload: "None"
       });
     }
   });

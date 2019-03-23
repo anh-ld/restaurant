@@ -7,6 +7,6 @@ const addTableItem = (name, price, id) => {
       name
     }
   }
-}
+};
 
 export default addTableItem;

@@ -1,10 +1,9 @@
-import React, { Component } from 'react';
+import React, { useRef, useEffect } from 'react';
 import { connect } from "react-redux";
 import deleteTableItem from '../../../../actions/orderActions/deleteTableItem';
 import addTableItem from '../../../../actions/orderActions/addTableItem';
 import styled from 'styled-components';
-import media from '../../../../utils/mediaQueriesStyling';
-import buttonMainStyle from '../../../../utils/buttonStyling';
+import { buttonMainStyle, media } from '../../../../utils/styling';
 
 const $OrderList = styled.div`
   height: 248px;
@@ -15,29 +14,29 @@ const $OrderList = styled.div`
   ${media.tablet`
     height: 248px;
   `}
-`
+`;
 
 const Table = styled.table`
   width: 100%;
   position: relative;
-`
+  border-collapse: collapse;
+`;
 
 const TableHead = styled.th`
-  border-collapse: collapse;
   text-align: left;
   padding: 0.5rem 0.2rem;
   border-bottom: 1px solid #EDEFF0;
   position: sticky;
   top: 0;
   background-color: #FFF;
-`
+`;
 
 const TableData = styled.td`
   border-collapse: collapse;
   padding: 0.4rem 0.2rem;
   border-bottom: 1px solid #F8F9F9;
   color: #333333;
-`
+`;
 
 const ActionButton = styled.button`
   ${buttonMainStyle}
@@ -48,60 +47,56 @@ const ActionButton = styled.button`
   &:hover, &:active {
     background-color: #EDEFF0;
   }
-`
+`;
 
-class OrderList extends Component {
-  componentDidUpdate = () => {
-    if (this.props.items.length > 0) {
-      this.refs.orderTable.scrollIntoView(false);
+const OrderList = ({items, selectedTable, onAdd, onDelete}) => {
+  const orderTable = useRef(null);
+  useEffect(() => {
+    if (items) {
+      orderTable.current.scrollIntoView(false);
     }
-  }
+  });
 
-  render() {
-    const { items, selectedTable, onAdd, onDelete } = this.props;
-    return (
-      <$OrderList>
-        {items.length === 0 ? null :
-          <Table ref='orderTable'>
-            <thead>
-              <tr>
-                <TableHead>Item</TableHead>
-                <TableHead>Price</TableHead>
-                <TableHead>Quantity</TableHead>
-                <TableHead>Actions</TableHead>
+  return (
+    <$OrderList>
+      {!items ? null :
+        <Table ref={orderTable}>
+          <thead>
+            <tr>
+              <TableHead>Item</TableHead>
+              <TableHead>Price</TableHead>
+              <TableHead>Quantity</TableHead>
+              <TableHead>Actions</TableHead>
+            </tr>
+          </thead>
+          <tbody>
+          {items.map((item, i) => {
+            return (
+              <tr key={i}>
+                <TableData>{item.name}</TableData>
+                <TableData>{item.price} $</TableData>
+                <TableData>{item.quantity}</TableData>
+                <TableData>
+                  <ActionButton
+                    onClick={() => onDelete(selectedTable, i)}
+                  >
+                    -
+                  </ActionButton>
+                  <ActionButton
+                    onClick={() => onAdd(item.name, item.price, selectedTable)}
+                  >
+                    +
+                  </ActionButton>
+                </TableData>
               </tr>
-            </thead>
-            <tbody>
-              {items.map((item, i) => {
-                return (
-                  <tr key={i}>
-                    <TableData>{item.name}</TableData>
-                    <TableData>{item.price} $</TableData>
-                    <TableData>{item.quantity}</TableData>
-                    <TableData>
-                      <ActionButton
-                        className="itemNumber"
-                        onClick={() => onDelete(selectedTable, i)}
-                      >
-                      -
-                      </ActionButton>
-                      <ActionButton
-                        className="itemNumber"
-                        onClick={() => onAdd(item.name, item.price, selectedTable)}
-                      >
-                        +
-                      </ActionButton>
-                    </TableData>
-                  </tr>
-                )
-              })}
-            </tbody>
-          </Table>
-        }
-      </$OrderList>
-    );
-  }
-}
+            )
+          })}
+          </tbody>
+        </Table>
+      }
+    </$OrderList>
+  );
+};
 
 const mapStateToProps = state => {
   return {

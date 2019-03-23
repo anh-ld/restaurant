@@ -1,6 +1,6 @@
 import { authRef, GoogleAuthProvider } from '../../config/firebase';
 
-export const signInWithGoogle = () => dispatch => {
+export const signInWithGoogle = () => {
   authRef
     .signInWithPopup(GoogleAuthProvider)
     .catch(error => {
@@ -8,10 +8,10 @@ export const signInWithGoogle = () => dispatch => {
     });
 };
 
-export const signInAnon = () => dispatch => {
+export const signInAnon = () => {
   authRef
     .signInAnonymously()
     .catch(error => {
       console.log(error);
     })
-}
+};

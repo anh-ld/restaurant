@@ -1,30 +1,30 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { connect } from "react-redux";
 import toggleTable from '../../../../actions/orderActions/toggleTable';
 import checkoutTable from '../../../../actions/orderActions/checkoutTable';
 import clearSelectedTable from '../../../../actions/orderActions/clearSelectedTable';
 import styled from 'styled-components';
-import buttonMainStyle from '../../../../utils/buttonStyling';
+import { buttonMainStyle } from '../../../../utils/styling';
 
 const Button = styled.button`
   ${buttonMainStyle}
   font-size: 1.5rem;
-  padding: 0.5rem 0rem;
+  padding: 0.5rem 0;
   width: 100%;
-`
+`;
 
 const CheckInButton = styled(Button)`
-  background-color: #5aac44;
+  background-color: #E76EB1;
   color: #FFF;
   &:hover, &:active {
-    background-color: #519839;
+    background-color: #CD5A91;
   }
   &:disabled {
     color: #a5acb0;
     background-color: #EDEFF0;
     cursor: not-allowed;
   }
-`
+`;
 
 const CheckOutButton = styled(Button)`
   background-color: #D6DADC;
@@ -33,40 +33,35 @@ const CheckOutButton = styled(Button)`
     background-color: #838C91;
     color: #FFF;
   }
-`
+`;
 
-class ToggleTableButton extends Component {
-  handleClick = () => {
-    const { selectedTable, tableData, uid, dataHistory, tableStatus, onCheckOut, onToggle } = this.props; 
+const ToggleTableButton = ({selectedTable, tableData, uid, dataHistory, tableStatus, onCheckOut, onToggle}) => {
+  const handleClick = () => {
     if (tableStatus) {
       onCheckOut(selectedTable, tableData, uid, dataHistory);
     }
     onToggle(selectedTable);
-  }
+  };
 
-  render() {
-    const { tableStatus, selectedTable } = this.props;
-    if (tableStatus) {
-      return (
-        <CheckOutButton
-          onClick={this.handleClick}
-        >
-          Checkout #{selectedTable}
-        </CheckOutButton>
-      );
-    }
+  if (tableStatus) {
     return (
-      <CheckInButton
-        disabled={selectedTable === null}
-        onClick={this.handleClick}
+      <CheckOutButton
+        onClick={handleClick}
       >
-        {selectedTable ?
-        "Checkin #" + selectedTable :
-        "Checkin"}
-      </CheckInButton>
+        Checkout #{selectedTable}
+      </CheckOutButton>
     );
   }
-}
+
+  return (
+    <CheckInButton
+      disabled={selectedTable === null}
+      onClick={handleClick}
+    >
+      {selectedTable ? "Checkin #" + selectedTable : "Checkin"}
+    </CheckInButton>
+  );
+};
 
 const mapStateToProps = (state) => {
   return {
@@ -76,7 +71,7 @@ const mapStateToProps = (state) => {
     uid: state.user.uid,
     dataHistory: state.dataHistory
   }
-}
+};
 
 const mapDispatchToProps = (dispatch) => {
   return {
@@ -84,10 +79,9 @@ const mapDispatchToProps = (dispatch) => {
       dispatch(toggleTable(id));
     },
     onCheckOut: (id, tableData, uid, dataHistory) => {
-      let total = 0;
-      for (let i = 0; i < tableData[id].length; i++) {
-        total += tableData[id][i].price * tableData[id][i].quantity;
-      }
+      const total = tableData[id].reduce((total, item) => {
+        return total + item.price * item.quantity;
+      }, 0);
 
       dispatch(clearSelectedTable());
       dispatch(checkoutTable(total, dataHistory, uid));

@@ -1,7 +1,7 @@
 import React from 'react';
 import TableButton from './tableLayout/TableButton';
 import styled from 'styled-components';
-import media from '../../../utils/mediaQueriesStyling';
+import { media } from '../../../utils/styling';
 
 const $Layout = styled.div`
   background-color: #FFF;
@@ -16,7 +16,7 @@ const $Layout = styled.div`
     width: initial;
     height: initial;
   `}
-`
+`;
 
 const TableLayout = () => {
   return (

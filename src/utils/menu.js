@@ -17,6 +17,6 @@ const menu = [
   {name: "Ratatouille", price: 5},
   {name: "Lasagna", price: 3},
   {name: "Margherita", price: 4}
-]
+];
 
 export default menu;

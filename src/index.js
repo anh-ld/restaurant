@@ -13,9 +13,9 @@ const GlobalStyles = createGlobalStyle`
     margin: 0;
     padding: 0;
     font-family: 'horizon_roundedbold', sans-serif;
-    background-color: #D6ECD2;
+    background-color: #FEF2F9;
   }
-`
+`;
 
 const store = createStore(reducer, applyMiddleware(reduxThunk));
 

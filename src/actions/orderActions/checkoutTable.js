@@ -1,9 +1,8 @@
 import { db } from '../../config/firebase';
+import { getDMY } from "../../utils/date";
 
 const checkoutTable = (total, dataHistory, uid) => dispatch => {
-  const year = new Date().getFullYear();
-  const month = new Date().getMonth() + 1;
-  const date = new Date().getDate();
+  const {date, month, year} = getDMY();
 
   let todayData = dataHistory.find(item => {
     return item.date === date && item.month === month && item.year === year;
@@ -37,6 +36,6 @@ const checkoutTable = (total, dataHistory, uid) => dispatch => {
 
     });
   }
-}
+};
 
 export default checkoutTable;

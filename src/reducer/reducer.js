@@ -1,8 +1,7 @@
 import { combineReducers } from 'redux';
+import { getDMY } from "../utils/date";
 
-const year = new Date().getFullYear();
-const month = new Date().getMonth() + 1;
-const date = new Date().getDate();
+const {date, month, year} = getDMY();
 
 // initiate data for table data
 let initialTableData = [];
@@ -56,7 +55,7 @@ const tableData = (state = initialTableData, action) => {
     default:
       return state;
   }
-}
+};
 
 // table status data reducer
 const tableStatusData = (state = initialTableStatusData, action) => {
@@ -68,7 +67,7 @@ const tableStatusData = (state = initialTableStatusData, action) => {
     default:
       return state;
   }
-}
+};
 
 // selected table reducer
 const selectedTable = (state = null, action) => {
@@ -76,11 +75,11 @@ const selectedTable = (state = null, action) => {
     case "SELECT_TABLE":
       return action.id;
     case "CLEAR_TABLE":
-      return null
+      return null;
     default:
       return state;
   }
-}
+};
 
 // money reducer
 const moneyEarned = (state = 0, action) => {
@@ -88,7 +87,7 @@ const moneyEarned = (state = 0, action) => {
     case "FETCH_DATA":
       const data = action.payload.find(item => {
         return item.date === date && item.month === month && item.year === year;
-      })
+      });
       if (data) {
         return data.money;
       }
@@ -100,7 +99,7 @@ const moneyEarned = (state = 0, action) => {
     default:
       return state;
   }
-}
+};
 
 // customer number reducer
 const totalCustomer = (state = 0, action) => {
@@ -108,7 +107,7 @@ const totalCustomer = (state = 0, action) => {
     case "FETCH_DATA":
       const data = action.payload.find(item => {
         return item.date === date && item.month === month && item.year === year;
-      })
+      });
       if (data) {
         return data.customer;
       }
@@ -120,7 +119,7 @@ const totalCustomer = (state = 0, action) => {
     default:
       return state;
   }
-}
+};
 
 // user info reducer
 const user = (state = null, action) => {
@@ -128,11 +127,11 @@ const user = (state = null, action) => {
     case "FETCH_USER":
       return action.payload;
     case "SIGN_OUT":
-      return null;
+      return "None";
     default:
       return state;
   }
-}
+};
 
 // data from the past reducer
 const dataHistory = (state = [], action) => {
@@ -146,7 +145,7 @@ const dataHistory = (state = [], action) => {
     default:
       return state;
   }
-}
+};
 
 const reducer = combineReducers({
   selectedTable,

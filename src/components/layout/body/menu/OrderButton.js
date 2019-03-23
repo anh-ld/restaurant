@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from "react-redux";
 import addTableItem from '../../../../actions/orderActions/addTableItem';
 import styled from 'styled-components';
-import buttonMainStyle from '../../../../utils/buttonStyling';
+import { buttonMainStyle } from '../../../../utils/styling';
 
 const $OrderButton = styled.button`
   ${buttonMainStyle}
@@ -20,7 +20,7 @@ const $OrderButton = styled.button`
     background-color: #EDEFF0;
     cursor: not-allowed;
   }
-`
+`;
 
 const OrderButton = ({ selectedTable, tableStatusData, onAdd, name, price }) => {
   return (

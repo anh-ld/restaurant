@@ -4,7 +4,7 @@ import OrderList from './details/OrderList';
 import { connect } from "react-redux";
 import Bill from './details/Bill';
 import styled from 'styled-components';
-import media from '../../../utils/mediaQueriesStyling';
+import { media } from '../../../utils/styling';
 
 const $Details = styled.div`
   width: 316px;
@@ -18,7 +18,7 @@ const $Details = styled.div`
     margin-bottom: 0.5rem;
     height: 350px;
   `}
-`
+`;
 
 const Details = ({ tableStatus }) => {
   return (
@@ -34,6 +34,6 @@ const mapStateToProps = (state) => {
   return {
     tableStatus: state.tableStatusData[state.selectedTable]
   }
-}
+};
 
 export default connect(mapStateToProps, null)(Details);

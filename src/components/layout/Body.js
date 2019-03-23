@@ -3,7 +3,7 @@ import Details from './body/Details';
 import TableLayout from './body/TableLayout';
 import Menu from './body/Menu';
 import styled from 'styled-components';
-import media from '../../utils/mediaQueriesStyling';
+import { media } from '../../utils/styling';
 
 const Wrapper = styled.div`
   display: flex;
@@ -18,7 +18,7 @@ const Wrapper = styled.div`
     margin-top: 0.5rem;
     margin-bottom: 0.5rem;
   `}
-`
+`;
 
 const Body = () => {
   return (

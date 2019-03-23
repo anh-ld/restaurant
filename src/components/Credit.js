@@ -2,20 +2,20 @@ import React from 'react';
 import styled from 'styled-components';
 
 const $Credit = styled.p`
-  color: #B7DDB0;
+  color: #FF95D6;
   text-align: center;
   margin: 0 auto;
   padding: 1rem;
-`
+`;
 
 const Link = styled.a`
   &:link, &:visited {
-    color: #B7DDB0;
+    color: #FF95D6;
   }
   &:active, &:hover {
-    color: #7BC86C;
+    color: #E76EB1;
   }
-`
+`;
 
 const Credit = () => {
   return (
