@@ -2,8 +2,8 @@ const path = require('path');
 const HtmlWebPackPlugin = require("html-webpack-plugin");
 const DashboardPlugin = require("webpack-dashboard/plugin");
 const CleanWebpackPlugin = require('clean-webpack-plugin');
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const RobotstxtPlugin = require("robotstxt-webpack-plugin");
+const TerserPlugin = require('terser-webpack-plugin');
 
 const htmlWebpackPlugin = new HtmlWebPackPlugin({
   template: "template/index.html",
@@ -46,7 +46,7 @@ module.exports = {
     ]
   },
   optimization: {
-    minimizer: [new UglifyJsPlugin()],
+    minimizer: [new TerserPlugin()],
     splitChunks: {
       cacheGroups: {
         vendor: {
