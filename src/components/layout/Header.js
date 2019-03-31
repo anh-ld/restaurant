@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
-import { connect } from 'react-redux';
+import React, {useState} from 'react';
+import {connect} from 'react-redux';
 import Modal from '../atom/Modal';
 import CheckOutAlert from './header/CheckOutAlert';
-import { signOut } from '../../actions/userActions/signOut';
+import {signOut} from '../../actions/userActions/signOut';
 import styled from 'styled-components';
-import { buttonMainStyle, media } from '../../utils/styling';
-import { transform, getDMY } from '../../utils/date';
+import {buttonMainStyle, media} from '../../utils/styling';
+import {transform, getDMY} from '../../utils/date';
 
 const $Header = styled.div`
   display: flex;
@@ -13,7 +13,7 @@ const $Header = styled.div`
 `;
 
 const Title = styled.h1`
-  color: #B44772;
+  color: ${({color}) => color['800']};
   ${media.tablet`
     font-size: 1.5rem;
   `}
@@ -40,13 +40,13 @@ const Date = styled.h2`
 const SignOutButton = styled.button`
   ${buttonMainStyle}
   font-size: 1.5rem;
-  background-color: #FFF;
-  color: #E76EB1;
+  background-color: #FFFFFF;
+  color: ${({color}) => color['600']};
   margin-left: 1rem;
   padding: 0 0.5rem;
   &:hover, &:active {
     color: #FFF;
-    background-color: #CD5A91;
+    background-color: ${({color}) => color['700']};
   }
   ${media.tablet`
     font-size: 1.2rem;
@@ -60,40 +60,46 @@ const SignOutButton = styled.button`
   `}
 `;
 
-const Header = ({tableStatusData, signOut}) => {
-  const {date, month, year} = getDMY();
-  const [showAlert, setShowAlert] = useState(false);
-  const handleClick = () => {
-    if (tableStatusData.includes(true)) {
-      setShowAlert(!showAlert);
-    } else {
-      signOut();
-    }
-  };
+const Header = ({tableStatusData, signOut, theme}) => {
+	const {date, month, year} = getDMY();
+	const [showAlert, setShowAlert] = useState(false);
+	const handleClick = () => {
+		if (tableStatusData.includes(true)) {
+			setShowAlert(!showAlert);
+		} else {
+			signOut();
+		}
+	};
 
-  return (
-    <$Header>
-      <Title>Hanoi Pizza Restaurant</Title>
-      <div>
-        <Date>{transform(date)}/{transform(month)}/{year}</Date>
-        <SignOutButton onClick={handleClick}>Go-out</SignOutButton>
-      </div>
-      <Modal
-        show={showAlert}
-        toggleModal={() => setShowAlert(!showAlert)}
-        title="Warning"
-      >
-        <CheckOutAlert />
-      </Modal>
-    </$Header>
-  )
+	return (
+		<$Header>
+			<Title color={theme}>Hanoi Pizza Restaurant</Title>
+			<div>
+				<Date>{transform(date)}/{transform(month)}/{year}</Date>
+				<SignOutButton
+					color={theme}
+					onClick={handleClick}
+				>
+					Go-out
+				</SignOutButton>
+			</div>
+			<Modal
+				show={showAlert}
+				toggleModal={() => setShowAlert(!showAlert)}
+				title="Warning"
+			>
+				<CheckOutAlert/>
+			</Modal>
+		</$Header>
+	)
 
 };
 
-const mapStateToProps = (state) => {
-  return {
-    tableStatusData: state.tableStatusData
-  }
+const mapStateToProps = state => {
+	return {
+		tableStatusData: state.tableStatusData,
+		theme: state.theme.palette
+	}
 };
 
-export default connect(mapStateToProps, { signOut })(Header);
+export default connect(mapStateToProps, {signOut})(Header);

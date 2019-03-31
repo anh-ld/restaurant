@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 import SignInButton from './signin/SignInButton';
 import SignInAnon from './signin/SignInAnon';
 import styled from 'styled-components';
@@ -10,18 +10,18 @@ const $SignIn = styled.div`
 `;
 
 const SignIn = () => {
-  const [isSigningIn, setIsSigningIn] = useState(false);
-  return (
-    <$SignIn>
-      <SignInButton
-        isSigningIn={isSigningIn}
-        handleSignInClick={() => setIsSigningIn(true)}
-      />
-      <SignInAnon
-        handleSignInClick={() => setIsSigningIn(true)}
-      />
-    </$SignIn>
-  );
+	const [isSigningIn, setIsSigningIn] = useState(false);
+	return (
+		<$SignIn>
+			<SignInButton
+				isSigningIn={isSigningIn}
+				handleSignInClick={() => setIsSigningIn(true)}
+			/>
+			<SignInAnon
+				handleSignInClick={() => setIsSigningIn(true)}
+			/>
+		</$SignIn>
+	);
 };
 
 export default SignIn;

@@ -1,5 +1,6 @@
 import { combineReducers } from 'redux';
-import { getDMY } from "../utils/date";
+import { getDMY } from '../utils/date';
+import palette from '../utils/theme';
 
 const {date, month, year} = getDMY();
 
@@ -147,6 +148,25 @@ const dataHistory = (state = [], action) => {
   }
 };
 
+// theme provider
+const initThemeState = {
+  palette: palette.sky,
+  color: 'sky'
+};
+const theme = (state = initThemeState, action) => {
+  switch (action.type) {
+    case "CHANGE_THEME":
+      const newColorPalette = palette[action.color];
+      return {
+        palette: newColorPalette,
+        color: action.color
+      };
+    default:
+      return state;
+  }
+  return state;
+}
+
 const reducer = combineReducers({
   selectedTable,
   tableStatusData,
@@ -154,7 +174,8 @@ const reducer = combineReducers({
   totalCustomer,
   moneyEarned,
   user,
-  dataHistory
+  dataHistory,
+  theme
 });
 
 export default reducer;

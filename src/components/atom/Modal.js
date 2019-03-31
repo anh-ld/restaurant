@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import { buttonMainStyle, media } from '../../utils/styling';
+import {buttonMainStyle, media} from '../../utils/styling';
+import {connect} from 'react-redux'
 
 const BackDrop = styled.div`
   position: fixed;
@@ -20,7 +21,7 @@ const BackDrop = styled.div`
 `;
 
 const $Modal = styled.div`
-  background-color: #FFF;
+  background-color: #FFFFFF;
   border-radius: 0.25rem;
   padding: 1rem;
   margin: 0 auto;
@@ -39,40 +40,43 @@ const Title = styled.h2`
   line-height: initial;
   display: block;
   margin: 0;
-  color: #CD5A91;
+  color: ${props => props.color['600']};
 `;
 
 const CloseButton = styled.button`
   ${buttonMainStyle}
   font-size: 1.5rem;
   margin-left: 1rem;
-  background-color: #E76EB1;
+  background-color: ${props => props.color['600']};
   color: #FFF;
   &:hover, &:active {
-    background-color: #CD5A91;
+    background-color: ${props => props.color['700']};
   }
 `;
 
-const Modal = ({ show, toggleModal, title, children }) => {
-  if(!show) {
-    return null;
-  }
+const Modal = ({show, toggleModal, title, children, theme}) => {
+	if (!show) {
+		return null;
+	}
 
-  return (
-    <BackDrop>
-      <$Modal>
-        <Header>
-          <Title>{title}</Title>
-          <CloseButton
-            onClick={toggleModal}
-          >
-            x
-          </CloseButton>
-        </Header>
-        {children}
-      </$Modal>
-    </BackDrop>
-  );
+	return (
+		<BackDrop>
+			<$Modal>
+				<Header>
+					<Title color={theme}>{title}</Title>
+					<CloseButton
+						color={theme}
+						onClick={toggleModal}
+					>
+						x
+					</CloseButton>
+				</Header>
+				{children}
+			</$Modal>
+		</BackDrop>
+	);
 };
 
-export default Modal;
+const mapStateToProps = state => ({theme: state.theme.palette});
+
+export default connect(mapStateToProps)(Modal);

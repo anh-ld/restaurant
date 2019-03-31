@@ -1,9 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
-import { media } from '../../utils/styling';
+import {media} from '../../utils/styling';
+import {connect} from 'react-redux';
 
 const $Spinner = styled.h1`
-  color: #CD5A91;
+	background-color: ${props => props.color['50']};;
+  color: ${props => props.color['700']};
   text-align: center;
   margin: 0 auto;
   padding: calc(50vh - 1.5rem) 0;
@@ -15,8 +17,10 @@ const $Spinner = styled.h1`
   `}
 `;
 
-const Loading = () => (
-  <$Spinner>loading...</$Spinner>
+const Loading = ({theme}) => (
+	<$Spinner color={theme}>loading...</$Spinner>
 );
 
-export default Loading;
+const mapStateToProps = state => ({theme: state.theme.palette});
+
+export default connect(mapStateToProps)(Loading);

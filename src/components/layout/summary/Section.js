@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import {media} from "../../../utils/styling";
+import {connect} from 'react-redux';
 
 const $Section = styled.div`
   margin-right: 5rem;
@@ -30,7 +31,7 @@ const Title = styled.p`
 
 const Content = styled.span`
   font-size: 2.2rem;
-  color: #CD5A91;
+  color: ${({color}) => color['700']};
   ${media.phone`
     font-size: 1.8rem;
   `}
@@ -44,14 +45,16 @@ const Unit = styled.span`
   `}
 `;
 
-const Section = ({title, content, unit}) => {
+const Section = ({title, content, unit, theme}) => {
 	return (
 		<$Section>
 			<Title>{title}</Title>
-			<Content>{content}</Content>
+			<Content color={theme}>{content}</Content>
 			<Unit>{unit}</Unit>
 		</$Section>
 	);
 };
 
-export default Section;
+const mapStateToProps = state => ({theme: state.theme.palette});
+
+export default connect(mapStateToProps)(Section);

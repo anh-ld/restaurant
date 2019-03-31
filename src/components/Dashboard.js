@@ -1,11 +1,11 @@
-import React, { useEffect } from 'react';
-import { connect } from 'react-redux';
+import React, {useEffect} from 'react';
+import {connect} from 'react-redux';
 import Header from './layout/Header';
 import Summary from './layout/Summary';
 import Body from './layout/Body';
-import { fetchData } from '../actions/userActions/fetchData';
+import {fetchData} from '../actions/userActions/fetchData';
 import styled from 'styled-components';
-import { media } from '../utils/styling';
+import {media} from '../utils/styling';
 
 const $Dashboard = styled.div`
   width: 960px;
@@ -22,23 +22,19 @@ const $Dashboard = styled.div`
 `;
 
 const Dashboard = ({fetchData, uid}) => {
-  useEffect(() => {
-    fetchData(uid);
-  });
+	useEffect(() => {
+		fetchData(uid);
+	});
 
-  return (
-    <$Dashboard>
-      <Header />
-      <Summary />
-      <Body />
-    </$Dashboard>
-  )
+	return (
+		<$Dashboard>
+			<Header/>
+			<Summary/>
+			<Body/>
+		</$Dashboard>
+	)
 };
 
-const mapStateToProps = (state) => {
-  return {
-    uid: state.user.uid
-  }
-};
+const mapStateToProps = state => ({uid: state.user.uid});
 
-export default connect(mapStateToProps, { fetchData })(Dashboard);
+export default connect(mapStateToProps, {fetchData})(Dashboard);

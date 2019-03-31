@@ -1,8 +1,8 @@
 import React from 'react';
-import { connect } from "react-redux";
+import {connect} from "react-redux";
 import selectTable from '../../../../actions/orderActions/selectTable';
 import styled from 'styled-components';
-import { buttonMainStyle, media } from '../../../../utils/styling';
+import {buttonMainStyle, media} from '../../../../utils/styling';
 
 const Button = styled.button`
   ${buttonMainStyle}
@@ -16,51 +16,54 @@ const Button = styled.button`
 `;
 
 const $TableButton = styled(Button)`
-  background-color: #FCDEF0;
+  background-color: ${({color}) => color['100']};
   color: #333333;
   &:hover, &:active {
-    background-color: #FF95D6;
+    background-color: ${({color}) => color['400']};
   }
   
 `;
 
 const SelectedTableButton = styled(Button)`
-  background-color: #FF95D6;
+  background-color: ${({color}) => color['400']};
   color: #333333;
 `;
 
-const TableButton = ({ tableStatusData, id, onSelect }) => {
-  if (tableStatusData[id]) {
-    return (
-      <SelectedTableButton
-        onClick={() => onSelect(id)}
-      >
-        {id}
-      </SelectedTableButton>
-    )
-  }
+const TableButton = ({tableStatusData, id, onSelect, theme}) => {
+	if (tableStatusData[id]) {
+		return (
+			<SelectedTableButton
+				color={theme}
+				onClick={() => onSelect(id)}
+			>
+				{id}
+			</SelectedTableButton>
+		)
+	}
 
-  return (
-    <$TableButton
-      onClick={() => onSelect(id)}
-    >
-      {id}
-    </$TableButton>
-  );
+	return (
+		<$TableButton
+			color={theme}
+			onClick={() => onSelect(id)}
+		>
+			{id}
+		</$TableButton>
+	);
 };
 
-const mapStateToProps = (state) => {
-  return {
-    tableStatusData: state.tableStatusData
-  }
+const mapStateToProps = state => {
+	return {
+		tableStatusData: state.tableStatusData,
+		theme: state.theme.palette
+	}
 };
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    onSelect: (id) => {
-      dispatch(selectTable(id));
-    }
-  }
+const mapDispatchToProps = dispatch => {
+	return {
+		onSelect: (id) => {
+			dispatch(selectTable(id));
+		}
+	}
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(TableButton);

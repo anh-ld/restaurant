@@ -1,9 +1,9 @@
 import React from 'react';
-import { connect } from 'react-redux';
+import {connect} from 'react-redux';
 import styled from 'styled-components';
 
 const $Bill = styled.div`
-  color: #E76EB1;
+  color: ${props => props.color['600']};
   width: 100%;
   text-align: center;
   padding: 0.5rem 0;
@@ -13,22 +13,23 @@ const Unit = styled.span`
   font-size: 1rem;
 `;
 
-const Bill = ({ items }) => {
-  const total = items.reduce((total, item) => {
-    return total + item.price * item.quantity;
-  }, 0);
+const Bill = ({items, theme}) => {
+	const total = items.reduce((total, item) => {
+		return total + item.price * item.quantity;
+	}, 0);
 
-  return (
-    <$Bill>
-      Total: {total}<Unit>$</Unit>
-    </$Bill>
-  );
+	return (
+		<$Bill color={theme}>
+			Total: {total}<Unit>$</Unit>
+		</$Bill>
+	);
 };
 
-const mapStateToProps = (state) => {
-  return {
-    items: state.tableData[state.selectedTable]
-  }
+const mapStateToProps = state => {
+	return {
+		items: state.tableData[state.selectedTable],
+		theme: state.theme.palette
+	}
 };
 
-export default connect(mapStateToProps, null)(Bill);
+export default connect(mapStateToProps)(Bill);

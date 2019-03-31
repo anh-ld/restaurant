@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
-import { connect } from 'react-redux';
+import React, {useState} from 'react';
+import {connect} from 'react-redux';
 import TableData from './summary/TableData';
 import Modal from '../atom/Modal';
 import Section from './summary/Section';
 import styled from 'styled-components';
-import { buttonMainStyle, media } from "../../utils/styling";
+import {buttonMainStyle, media} from "../../utils/styling";
 
 const $Summary = styled.div`
   display: flex;
@@ -34,10 +34,10 @@ const HistoryButton = styled.button`
   ${buttonMainStyle}
   font-size: 1.5rem;
   margin-left: 1rem;
-  background-color: #E76EB1;
+  background-color: ${({color}) => color['600']};
   color: #FFF;
   &:hover, &:active {
-    background-color: #CD5A91;
+    background-color: ${({color}) => color['700']};
   }
   ${media.tablet`
     margin-left: 0;
@@ -47,43 +47,45 @@ const HistoryButton = styled.button`
   `}
 `;
 
-const Summary = ({tableStatusData, moneyEarned, customer, user}) => {
-  const [showDataHistory, setShowDataHistory] = useState(false);
-  const occupiedTable = tableStatusData.filter((tableStatus) => tableStatus === true).length;
+const Summary = ({tableStatusData, moneyEarned, customer, user, theme}) => {
+	const [showDataHistory, setShowDataHistory] = useState(false);
+	const occupiedTable = tableStatusData.filter((tableStatus) => tableStatus === true).length;
 
-  return (
-    <$Summary>
-      <div>
-        <Section title="Occupied Table" content={occupiedTable} unit="/15" />
-        <Section title="Money" content={moneyEarned} unit="$" />
-        <Section title="Customer" content={customer} unit="" />
-      </div>
-      <div>
-        <DisplayName>{user.displayName ? user.displayName : "Anon"}</DisplayName>
-        <HistoryButton
-          onClick={() => setShowDataHistory(!showDataHistory)}
-        >
-          History
-        </HistoryButton>
-      </div>
-      <Modal
-        show={showDataHistory}
-        toggleModal={() =>setShowDataHistory(!showDataHistory)}
-        title="History"
-      >
-        <TableData />
-      </Modal>
-    </$Summary>
-  )
+	return (
+		<$Summary>
+			<div>
+				<Section title="Occupied Table" content={occupiedTable} unit="/15"/>
+				<Section title="Money" content={moneyEarned} unit="$"/>
+				<Section title="Customer" content={customer} unit=""/>
+			</div>
+			<div>
+				<DisplayName>{user.displayName ? user.displayName : "Anon"}</DisplayName>
+				<HistoryButton
+					color={theme}
+					onClick={() => setShowDataHistory(!showDataHistory)}
+				>
+					History
+				</HistoryButton>
+			</div>
+			<Modal
+				show={showDataHistory}
+				toggleModal={() => setShowDataHistory(!showDataHistory)}
+				title="History"
+			>
+				<TableData/>
+			</Modal>
+		</$Summary>
+	)
 };
 
-const mapStateToProps = (state) => {
-  return {
-    tableStatusData: state.tableStatusData,
-    moneyEarned: state.moneyEarned,
-    customer: state.totalCustomer,
-    user: state.user
-  }
+const mapStateToProps = state => {
+	return {
+		tableStatusData: state.tableStatusData,
+		moneyEarned: state.moneyEarned,
+		customer: state.totalCustomer,
+		user: state.user,
+		theme: state.theme.palette
+	}
 };
 
-export default connect(mapStateToProps, null)(Summary);
+export default connect(mapStateToProps)(Summary);

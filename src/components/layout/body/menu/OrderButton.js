@@ -1,8 +1,8 @@
 import React from 'react';
-import { connect } from "react-redux";
+import {connect} from "react-redux";
 import addTableItem from '../../../../actions/orderActions/addTableItem';
 import styled from 'styled-components';
-import { buttonMainStyle } from '../../../../utils/styling';
+import {buttonMainStyle} from '../../../../utils/styling';
 
 const $OrderButton = styled.button`
   ${buttonMainStyle}
@@ -22,30 +22,30 @@ const $OrderButton = styled.button`
   }
 `;
 
-const OrderButton = ({ selectedTable, tableStatusData, onAdd, name, price }) => {
-  return (
-    <$OrderButton
-      disabled={selectedTable === null || !tableStatusData[selectedTable]}
-      onClick={() => onAdd(name, price, selectedTable)}
-    >
-      {name}
-    </$OrderButton>
-  );
+const OrderButton = ({selectedTable, tableStatusData, onAdd, name, price}) => {
+	return (
+		<$OrderButton
+			disabled={selectedTable === null || !tableStatusData[selectedTable]}
+			onClick={() => onAdd(name, price, selectedTable)}
+		>
+			{name}
+		</$OrderButton>
+	);
 };
 
 const mapStateToProps = state => {
-  return {
-    selectedTable: state.selectedTable,
-    tableStatusData: state.tableStatusData
-  };
+	return {
+		selectedTable: state.selectedTable,
+		tableStatusData: state.tableStatusData
+	};
 };
 
 const mapDispatchToProps = dispatch => {
-  return {
-    onAdd: (name, price, tableId) => {
-      dispatch(addTableItem(name, price, tableId));
-    }
-  };
+	return {
+		onAdd: (name, price, tableId) => {
+			dispatch(addTableItem(name, price, tableId));
+		}
+	};
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(OrderButton);

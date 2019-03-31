@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { media } from '../../../utils/styling';
+import {media} from '../../../utils/styling';
 
 const $CheckOutAlert = styled.h2`
   ${media.tablet`
@@ -12,9 +12,9 @@ const $CheckOutAlert = styled.h2`
 `;
 
 const CheckOutAlert = () => {
-  return (
-    <$CheckOutAlert>Please checkout before signing out!</$CheckOutAlert>
-  );
+	return (
+		<$CheckOutAlert>Please checkout before signing out!</$CheckOutAlert>
+	);
 };
 
 export default CheckOutAlert;

@@ -3,7 +3,7 @@ import Details from './body/Details';
 import TableLayout from './body/TableLayout';
 import Menu from './body/Menu';
 import styled from 'styled-components';
-import { media } from '../../utils/styling';
+import {media} from '../../utils/styling';
 
 const Wrapper = styled.div`
   display: flex;
@@ -21,15 +21,15 @@ const Wrapper = styled.div`
 `;
 
 const Body = () => {
-  return (
-    <React.Fragment>
-      <Wrapper>
-        <Details />
-        <TableLayout />
-      </Wrapper>
-      <Menu />
-    </React.Fragment>
-  );
+	return (
+		<React.Fragment>
+			<Wrapper>
+				<Details/>
+				<TableLayout/>
+			</Wrapper>
+			<Menu/>
+		</React.Fragment>
+	);
 };
 
 export default Body;

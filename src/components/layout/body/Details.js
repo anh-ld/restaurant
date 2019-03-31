@@ -1,14 +1,14 @@
 import React from 'react';
 import ToggleTableButton from './details/ToggleTableButton';
 import OrderList from './details/OrderList';
-import { connect } from "react-redux";
+import {connect} from "react-redux";
 import Bill from './details/Bill';
 import styled from 'styled-components';
-import { media } from '../../../utils/styling';
+import {media} from '../../../utils/styling';
 
 const $Details = styled.div`
   width: 316px;
-  background-color: #FFF;
+  background-color: #FFFFFF;
   padding: 0.5rem;
   border-radius: 0.25rem;
   margin-right: 1rem;
@@ -20,20 +20,16 @@ const $Details = styled.div`
   `}
 `;
 
-const Details = ({ tableStatus }) => {
-  return (
-    <$Details>
-      <ToggleTableButton />
-      {tableStatus ? <OrderList /> : null}
-      {tableStatus ? <Bill /> : null}
-    </$Details>
-  );
+const Details = ({tableStatus}) => {
+	return (
+		<$Details>
+			<ToggleTableButton/>
+			{tableStatus ? <OrderList/> : null}
+			{tableStatus ? <Bill/> : null}
+		</$Details>
+	);
 };
 
-const mapStateToProps = (state) => {
-  return {
-    tableStatus: state.tableStatusData[state.selectedTable]
-  }
-};
+const mapStateToProps = state => ({tableStatus: state.tableStatusData[state.selectedTable]});
 
-export default connect(mapStateToProps, null)(Details);
+export default connect(mapStateToProps)(Details);

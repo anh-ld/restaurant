@@ -1,9 +1,9 @@
-import React, { useRef, useEffect } from 'react';
-import { connect } from "react-redux";
+import React, {useRef, useEffect} from 'react';
+import {connect} from "react-redux";
 import deleteTableItem from '../../../../actions/orderActions/deleteTableItem';
 import addTableItem from '../../../../actions/orderActions/addTableItem';
 import styled from 'styled-components';
-import { buttonMainStyle, media } from '../../../../utils/styling';
+import {buttonMainStyle, media} from '../../../../utils/styling';
 
 const $OrderList = styled.div`
   height: 248px;
@@ -50,70 +50,70 @@ const ActionButton = styled.button`
 `;
 
 const OrderList = ({items, selectedTable, onAdd, onDelete}) => {
-  const orderTable = useRef(null);
-  useEffect(() => {
-    if (items) {
-      orderTable.current.scrollIntoView(false);
-    }
-  });
+	const orderTable = useRef(null);
+	useEffect(() => {
+		if (items) {
+			orderTable.current.scrollIntoView(false);
+		}
+	});
 
-  return (
-    <$OrderList>
-      {!items ? null :
-        <Table ref={orderTable}>
-          <thead>
-            <tr>
-              <TableHead>Item</TableHead>
-              <TableHead>Price</TableHead>
-              <TableHead>Quantity</TableHead>
-              <TableHead>Actions</TableHead>
-            </tr>
-          </thead>
-          <tbody>
-          {items.map((item, i) => {
-            return (
-              <tr key={i}>
-                <TableData>{item.name}</TableData>
-                <TableData>{item.price} $</TableData>
-                <TableData>{item.quantity}</TableData>
-                <TableData>
-                  <ActionButton
-                    onClick={() => onDelete(selectedTable, i)}
-                  >
-                    -
-                  </ActionButton>
-                  <ActionButton
-                    onClick={() => onAdd(item.name, item.price, selectedTable)}
-                  >
-                    +
-                  </ActionButton>
-                </TableData>
-              </tr>
-            )
-          })}
-          </tbody>
-        </Table>
-      }
-    </$OrderList>
-  );
+	return (
+		<$OrderList>
+			{!items ? null :
+				<Table ref={orderTable}>
+					<thead>
+					<tr>
+						<TableHead>Item</TableHead>
+						<TableHead>Price</TableHead>
+						<TableHead>Quantity</TableHead>
+						<TableHead>Actions</TableHead>
+					</tr>
+					</thead>
+					<tbody>
+					{items.map((item, i) => {
+						return (
+							<tr key={i}>
+								<TableData>{item.name}</TableData>
+								<TableData>{item.price} $</TableData>
+								<TableData>{item.quantity}</TableData>
+								<TableData>
+									<ActionButton
+										onClick={() => onDelete(selectedTable, i)}
+									>
+										-
+									</ActionButton>
+									<ActionButton
+										onClick={() => onAdd(item.name, item.price, selectedTable)}
+									>
+										+
+									</ActionButton>
+								</TableData>
+							</tr>
+						)
+					})}
+					</tbody>
+				</Table>
+			}
+		</$OrderList>
+	);
 };
 
 const mapStateToProps = state => {
-  return {
-    selectedTable: state.selectedTable,
-    items: state.tableData[state.selectedTable]
-  };
+	return {
+		selectedTable: state.selectedTable,
+		items: state.tableData[state.selectedTable]
+	};
 };
 
 const mapDispatchToProps = dispatch => {
-  return {
-    onDelete: (tableId, id) => {
-      dispatch(deleteTableItem(tableId, id));
-    },
-    onAdd: (name, price, tableId) => {
-      dispatch(addTableItem(name, price, tableId));
-    }
-  };
+	return {
+		onDelete: (tableId, id) => {
+			dispatch(deleteTableItem(tableId, id));
+		},
+		onAdd: (name, price, tableId) => {
+			dispatch(addTableItem(name, price, tableId));
+		}
+	};
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(OrderList);
