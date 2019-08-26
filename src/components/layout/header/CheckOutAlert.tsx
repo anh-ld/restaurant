@@ -1,14 +1,9 @@
 import React from "react"
 import styled from "styled-components"
-import {media} from "../../../utils/styling"
+import Heading from '../../atom/Heading'
 
-const StyledCheckOutAlert = styled.h2`
-  ${media.tablet`
-    font-size: 1.25rem;
-  `}
-  ${media.phone`
-    font-size: 1rem;
-  `}
+const StyledCheckOutAlert = styled(p => <Heading variant='large' {...p} />)`
+    margin: 8px 0;
 `
 
 const CheckOutAlert: React.FC<{}> = () => <StyledCheckOutAlert>Please checkout before signing out!</StyledCheckOutAlert>

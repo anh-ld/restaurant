@@ -1,20 +1,25 @@
 import React from "react"
 import {connect} from "react-redux"
 import styled from "styled-components"
+import Heading from '../../../atom/Heading'
+import {State, TableDataType} from "../../../../types/store"
 
-const StyledBill = styled.div`
-    color: ${p => p.theme['600']};
-    width: 100%;
+const StyledBill = styled(p => <Heading variant='medium' {...p} />)`
     text-align: center;
-    padding: 0.5rem 0;
-    font-size: 1.5rem;
+    padding: 8px 0;
+    color: ${p => p.theme['700']}
 `
 const Unit = styled.span`
-    font-size: 1rem
+    font-size: 16px;
+    color: ${p => p.theme['N700']}
 `
 
-const Bill: React.FC<any> = ({items}) => {
-    const total: any = items.reduce((total: any, item: any) => total + item.price * item.quantity, 0)
+interface Props {
+    items: Array<TableDataType>
+}
+
+const Bill: React.FC<Props> = ({items}) => {
+    const total: any = items.reduce((total: number, item: TableDataType) => total + item.price * item.quantity, 0)
 
     return (
         <StyledBill>
@@ -24,7 +29,7 @@ const Bill: React.FC<any> = ({items}) => {
     )
 }
 
-const mapStateToProps = (state: any) => {
+const mapStateToProps = (state: State) => {
     return {
         items: state.tableData[state.selectedTable]
     }

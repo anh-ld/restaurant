@@ -3,24 +3,16 @@ import Details from "./body/Details"
 import TableLayout from "./body/TableLayout"
 import Menu from "./body/Menu"
 import styled from "styled-components"
-import {media} from "../../utils/styling"
 
 const Wrapper = styled.div`
-    display: flex;
-    margin: 1.5rem 0 1rem 0;
+    display: grid;
+    margin: 24px 0 16px 0;
     height: 350px;
-    ${media.desktop`
-        height: 425px;
-    `}
-    ${media.tablet`
-        display: block;
-        height: initial;
-        margin-top: 0.5rem;
-        margin-bottom: 0.5rem;
-    `}
+    grid-template-columns: 3fr 5fr;
+    grid-gap: 16px;
 `
 
-const Body: React.FC<any> = () => (
+const Body: React.FC<{}> = () => (
     <>
         <Wrapper>
             <Details/>

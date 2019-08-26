@@ -1,26 +1,14 @@
 import React from "react"
 import styled from "styled-components"
+import Link from '../atom/Link'
+import Text from '../atom/Text'
 
-const StyledCredit = styled.span`
-    color: ${p => p.theme['400']};
-    text-align: center;
-    margin: 0;
-    padding: 0;
-`
-
-const Link = styled.a`
-    &:link,
-    &:visited {
-        color: ${p => p.theme['400']};
-    }
-    &:active,
-    &:hover {
-        color: ${p => p.theme['600']};
-    }
+const StyledText = styled(p => <Text {...p}/>)`
+    font-size: 18px;
 `
 
 const Credit: React.FC<{}> = () => (
-    <StyledCredit>
+    <StyledText>
         made by&nbsp;
         <Link
             href="https://github.com/culee"
@@ -29,7 +17,7 @@ const Credit: React.FC<{}> = () => (
         >
             @culee
         </Link>
-    </StyledCredit>
+    </StyledText>
 )
 
 export default Credit

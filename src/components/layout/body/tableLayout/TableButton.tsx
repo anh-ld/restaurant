@@ -2,23 +2,18 @@ import React from "react"
 import {connect} from "react-redux"
 import selectTable from "../../../../actions/orderActions/selectTable"
 import styled from "styled-components"
-import {media} from "../../../../utils/styling"
-import Button from '../../../atom/Button'
 import {State} from "../../../../types/store"
+import Button from '../../../atom/Button'
 
 const StyledButton = styled(props => <Button {...props} />)`
-    font-size: 2rem;
     width: 75px;
     height: 75px;
-    margin: 0 1rem;
-    ${media.tablet`
-        margin-bottom: 0.5rem;
-    `}
+    font-size: 32px;
+    color: ${p => p.theme['N800']};
 `
 
 const StyledTableButton = styled(props => <StyledButton {...props} />)`
     background-color: ${p => p.theme['100']};
-    color: #333333;
     &:hover,
     &:active {
         background-color: ${p => p.theme['400']};
@@ -27,7 +22,12 @@ const StyledTableButton = styled(props => <StyledButton {...props} />)`
 
 const SelectedTableButton = styled(props => <StyledButton {...props} />)`
     background-color: ${p => p.theme['400']};
-    color: #333333;
+`
+
+const TableButtonWrapper = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
 `
 
 interface Props {
@@ -40,9 +40,11 @@ const TableButton: React.FC<Props> = ({tableStatusData, id, onSelect}) => {
     const RenderTableButton = tableStatusData[id] ? SelectedTableButton : StyledTableButton
 
     return (
-        <RenderTableButton onClick={() => onSelect(id)}>
-            {id}
-        </RenderTableButton>
+        <TableButtonWrapper>
+            <RenderTableButton onClick={() => onSelect(id)}>
+                {id}
+            </RenderTableButton>
+        </TableButtonWrapper>
     )
 }
 

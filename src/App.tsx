@@ -8,6 +8,7 @@ import {State} from "./types/store"
 import Dashboard from './components/Dashboard'
 import SignIn from './components/SignIn'
 import Footer from './components/Footer'
+import palette, {base} from "./utils/theme";
 
 const StyledApp = styled.div`
     min-height: 100vh;
@@ -29,8 +30,8 @@ const App: React.FC<Props> = ({changeTheme, currentTheme, user, theme, fetchUser
     }, [])
 
     const setTheme = () => {
-        const colors = ['blue', 'green', 'orange', 'red', 'yellow']
-        if (!localStorage.getItem("color") || !colors.includes(localStorage.getItem("color"))) {
+        const colorsList = Object.keys(palette)
+        if (!localStorage.getItem("color") || !colorsList.includes(localStorage.getItem("color"))) {
             localStorage.setItem("color", currentTheme)
         } else {
             const color = localStorage.getItem("color");
@@ -48,16 +49,18 @@ const App: React.FC<Props> = ({changeTheme, currentTheme, user, theme, fetchUser
 
     return (
         <ThemeProvider theme={theme}>
-            <StyledApp>
-                {user === "None" ? (
-                    <div>
-                        <SignIn/>
-                        <Footer/>
-                    </div>
-                ) : (
-                    <Dashboard/>
-                )}
-            </StyledApp>
+            <ThemeProvider theme={base}>
+                <StyledApp>
+                    {user === "None" ? (
+                        <div>
+                            <SignIn/>
+                            <Footer/>
+                        </div>
+                    ) : (
+                        <Dashboard/>
+                    )}
+                </StyledApp>
+            </ThemeProvider>
         </ThemeProvider>
     )
 }

@@ -1,21 +1,7 @@
 import React from "react"
 import {connect} from "react-redux"
 import {signInWithGoogle} from "../../actions/userActions/signIn"
-import styled from "styled-components"
-import Button from '../atom/Button'
-
-const StyledSignInButton = styled(props => <Button {...props} />)`
-    font-size: 1.5rem;
-    padding: 0.5rem 0;
-    width: 100%;
-    background-color: ${p => p.theme['700']};
-    color: #FFFFFF;
-    line-height: 2rem;
-    &:hover,
-    &:active {
-        background-color: ${p => p.theme['800']};
-    }
-`
+import Button  from '../atom/Button'
 
 interface Props {
     isSigningIn: boolean
@@ -30,9 +16,9 @@ const SignInButton: React.FC<Props> = ({isSigningIn, handleSignInClick, signInWi
     }
 
     return (
-        <StyledSignInButton onClick={handleClick}>
+        <Button onClick={handleClick}>
             {!isSigningIn ? "Sign in with Google" : "Signing in..."}
-        </StyledSignInButton>
+        </Button>
     )
 }
 

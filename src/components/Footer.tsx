@@ -4,7 +4,7 @@ import Credit from "./footer/Credit"
 import ColorPalette from "./footer/ColorPalette"
 
 const StyledFooter = styled.div`
-    padding: 1rem;
+    padding: 16px;
     display: flex;
     justify-content: space-between;
 `

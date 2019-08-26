@@ -1,7 +1,9 @@
 import React from "react"
+import ReactDOM from 'react-dom'
 import styled from "styled-components"
-import {media} from "../../utils/styling"
 import Button from './Button'
+import Heading from './Heading'
+import Pane from './Pane'
 
 const BackDrop = styled.div`
     position: fixed;
@@ -12,23 +14,11 @@ const BackDrop = styled.div`
     background-color: rgba(0, 0, 0, 0.5);
     padding: 3rem;
     z-index: 1;
-    ${media.tablet`
-        padding: 2rem;
-    `}
-    ${media.phone`
-        padding: 1rem;
-    `}
 `
 
-const StyledModal = styled.div`
-    background-color: #FFFFFF;
-    border-radius: 0.25rem;
-    padding: 1rem;
+const StyledModal = styled(p => <Pane {...p} />)`
     margin: 0 auto;
-    max-width: 900px;
-    ${media.phone`
-        padding: 0.5rem;
-    `}
+    width: 900px;
 `
 
 const Header = styled.div`
@@ -36,30 +26,29 @@ const Header = styled.div`
     justify-content: space-between;
 `
 
-const Title = styled.h2`
-    line-height: initial;
-    display: block;
-    margin: 0;
+const Title = styled(p => <Heading variant='medium' {...p} />)`
     color: ${p => p.theme['600']};
 `
 
 const CloseButton = styled(props => <Button {...props} />)`
-    font-size: 1.5rem;
-    margin-left: 1rem;
-    background-color: ${p => p.theme['600']};
-    color: #FFFFFF;
-    &:hover,
-    &:active {
-        background-color: ${p => p.theme['700']};
-    }
+    width: initial;
+    padding: 0 8px;
+    line-height: 24px;
 `
 
-const Modal: React.FC<any> = ({show, toggleModal, title, children}) => {
+interface Props {
+    show: boolean
+    toggleModal: () => void
+    title: string
+    children: React.ReactNode
+}
+
+const Modal: React.FC<Props> = ({show, toggleModal, title, children}) => {
     if (!show) {
         return null
     }
 
-    return (
+    return ReactDOM.createPortal((
         <BackDrop>
             <StyledModal>
                 <Header>
@@ -71,7 +60,7 @@ const Modal: React.FC<any> = ({show, toggleModal, title, children}) => {
                 {children}
             </StyledModal>
         </BackDrop>
-    )
+    ), document.body)
 }
 
 export default Modal

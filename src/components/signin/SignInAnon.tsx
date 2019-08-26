@@ -2,23 +2,11 @@ import React from "react"
 import {connect} from "react-redux"
 import {signInAnon} from "../../actions/userActions/signIn"
 import styled from "styled-components"
+import Text from '../atom/Text'
+import Link from '../atom/Link'
 
-const StyledAnon = styled.p`
-    color: ${p => p.theme['600']};
-    margin: 0.25rem 0;
-    font-size: 0.9rem;
+const StyledText = styled(p => <Text {...p} />)`
     text-align: center;
-`
-
-const Link = styled.span`
-    text-decoration: underline;
-    &:hover {
-        cursor: pointer;
-        color: ${p => p.theme['800']};
-    }
-    &:active {
-        color: ${p => p.theme['800']};
-    }
 `
 
 interface Props {
@@ -33,13 +21,13 @@ const SignInAnon: React.FC<Props> = ({handleSignInClick, signInAnon}) => {
     }
 
     return (
-        <StyledAnon>
+        <StyledText>
             or click&nbsp;
             <Link onClick={handleClick}>
                 here
             </Link>
             &nbsp;to sign in anonymously
-        </StyledAnon>
+        </StyledText>
     )
 }
 

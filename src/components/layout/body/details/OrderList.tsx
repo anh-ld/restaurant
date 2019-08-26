@@ -3,19 +3,12 @@ import {connect} from "react-redux"
 import deleteTableItem from "../../../../actions/orderActions/deleteTableItem"
 import addTableItem from "../../../../actions/orderActions/addTableItem"
 import styled from "styled-components"
-import {media} from "../../../../utils/styling"
-import Button from "../../../atom/Button"
 import {State, TableDataType} from "../../../../types/store"
+import Button from "../../../atom/Button"
 
 const StyledOrderList = styled.div`
-    height: 248px;
+    height: 240px;
     overflow-y: scroll;
-    ${media.desktop`
-        height: 323px;
-    `}
-    ${media.tablet`
-        height: 248px;
-    `}
 `
 
 const Table = styled.table`
@@ -41,14 +34,9 @@ const TableData = styled.td`
 `
 
 const ActionButton = styled(props => <Button {...props} />)`
-    background-color: #f8f9f9;
-    font-weight: 900;
     width: 50%;
-    font-size: 1rem;
-    &:hover,
-    &:active {
-        background-color: #edeff0;
-    }
+    font-size: 16px;
+    line-height: 24px;
 `
 
 interface Props {
@@ -58,8 +46,8 @@ interface Props {
     onDelete: (selectedTable: number, i: number) => void
 }
 
-const OrderList: React.FC<any> = ({items, selectedTable, onAdd, onDelete}) => {
-    const orderTable = useRef<RefObject<HTMLTableElement>>(null)
+const OrderList: React.FC<Props> = ({items, selectedTable, onAdd, onDelete}) => {
+    const orderTable = useRef(null)
     useEffect(() => {
         if (items) {
             orderTable.current.scrollIntoView(false)

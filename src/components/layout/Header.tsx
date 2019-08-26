@@ -1,65 +1,34 @@
-import React, {useState} from "react"
+import React, {useState, memo} from "react"
 import {connect} from "react-redux"
 import Modal from "../atom/Modal"
 import CheckOutAlert from "./header/CheckOutAlert"
 import {signOut} from "../../actions/userActions/signOut"
 import styled from "styled-components"
-import {media} from "../../utils/styling"
 import {transform, getDMY} from "../../utils/date"
-import Button from '../atom/Button'
 import {State} from "../../types/store"
+import Button from '../atom/Button'
+import Heading from '../atom/Heading'
 
 const StyledHeader = styled.div`
   display: flex;
   justify-content: space-between;
+  align-items: center;
+  padding: 24px 0;
 `
 
-const Title = styled.h1`
-    color: ${p => p.theme['800']};
-    ${media.tablet`
-        font-size: 1.5rem;
-    `}
-    ${media.phone`
-        font-size: 1.2rem;
-    `}
+const Title = styled(p => <Heading variant='large' {...p} />)`
+    color: ${p => p.theme['900']}
 `
 
-const Date = styled.h2`
+const Date = styled(p => <Heading variant='medium' {...p} />)`
     display: inline-block;
-    line-height: 2.5rem;
-    font-weight: 500;
-    color: #333333;
-    ${media.tablet`
-        font-size: 1.2rem;
-        line-height: 2.25rem;
-    `}
-    ${media.phone`
-        font-size: 1rem;
-        line-height: 1.75rem;
-    `}
+    color: ${p => p.theme['N700']}
 `
 
-const SignOutButton = styled(props => <Button {...props} />)`
-    font-size: 1.5rem;
-    background-color: #FFFFFF;
-    color: ${p => p.theme['600']};
-    margin-left: 1rem;
-    padding: 0 0.5rem;
-    &:hover,
-    &:active {
-        color: #FFFFFF;
-        background-color: ${p => p.theme['700']};
-    }
-    ${media.tablet`
-        font-size: 1.2rem;
-        margin-left: 0.25rem;
-        padding: 0.25rem;
-        width: initial;
-    `}
-    ${media.phone`
-        font-size: 1rem;
-        width: initial;
-    `}
+const SignOutButton = styled(p => <Button variant='invert' {...p} />)`
+    width: inherit;
+    padding: 0 8px;
+    margin-left: 8px;
 `
 
 interface Props {
@@ -83,9 +52,7 @@ const Header: React.FC<Props> = ({tableStatusData, signOut}) => {
         <StyledHeader>
             <Title>Hanoi Pizza Restaurant</Title>
             <div>
-                <Date>
-                    {transform(date)}/{transform(month)}/{year}
-                </Date>
+                <Date>{transform(date)}/{transform(month)}/{year}</Date>
                 <SignOutButton onClick={handleClick}>
                     Go-out
                 </SignOutButton>

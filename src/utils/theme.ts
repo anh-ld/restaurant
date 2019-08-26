@@ -4,19 +4,18 @@ interface ThemeArray {
     [key: string]: DefaultTheme
 }
 
-export const base: ThemeArray = {
-    neutral: {
-        0: '#FFFFFF',
-        100: '#f3f4f4',
-        200: '#dee1e1',
-        300: '#c8cccc',
-        400: '#b0b6b7',
-        500: '#929a9b',
-        600: '#6e797a',
-        700: '#515e5f',
-        800: '#364141',
-        900: '#273333',
-    }
+export const base: DefaultTheme = {
+    N0: '#FFFFFF',
+    N100: '#f3f4f4',
+    N200: '#dee1e1',
+    N300: '#c8cccc',
+    N400: '#b0b6b7',
+    N500: '#929a9b',
+    N600: '#6e797a',
+    N700: '#515e5f',
+    N800: '#364141',
+    N900: '#273333',
+    N1000: '#162020'
 }
 
 const palette: ThemeArray = {

@@ -4,39 +4,14 @@ import toggleTable from "../../../../actions/orderActions/toggleTable"
 import checkoutTable from "../../../../actions/orderActions/checkoutTable"
 import clearSelectedTable from "../../../../actions/orderActions/clearSelectedTable"
 import styled from "styled-components"
-import Button from '../../../atom/Button'
 import {CustomerData, State, TableDataType} from "../../../../types/store"
+import Button from '../../../atom/Button'
 
-const ToggleButton = styled(props => <Button {...props} />)`
-    font-size: 1.5rem;
-    padding: 0.5rem 0;
-    width: 100%;
+const CheckInButton = styled(props => <Button {...props} />)``
+
+const CheckOutButton = styled(props => <Button variant='invert' {...props} />)`
+    background-color: ${p => p.theme['N100']};
 `
-
-const CheckInButton = styled(props => <ToggleButton {...props} />)`
-    background-color: ${p => p.theme['600']};
-    color: #FFFFFF;
-    &:hover,
-    &:active {
-        background-color: ${p => p.theme['700']};
-    }
-    &:disabled {
-        color: #a5acb0;
-        background-color: #edeff0;
-        cursor: not-allowed;
-    }
-`
-
-const CheckOutButton = styled(props => <ToggleButton {...props} />)`
-    background-color: #d6dadc;
-    color: #333333;
-    &:hover,
-    &:active {
-        background-color: #838c91;
-        color: #FFFFFF;
-    }
-`
-
 interface Props {
     selectedTable: number
     tableData: Array<Array<TableDataType>>
