@@ -4,6 +4,7 @@ const DashboardPlugin = require("webpack-dashboard/plugin");
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const RobotstxtPlugin = require("robotstxt-webpack-plugin");
 const TerserPlugin = require('terser-webpack-plugin');
+const Dotenv = require('dotenv-webpack');
 
 const htmlWebpackPlugin = new HtmlWebPackPlugin({
   template: "template/index.html",
@@ -17,21 +18,20 @@ const options = {
 };
 
 module.exports = {
-  entry: './src/index.js',
+  entry: './src/index.tsx',
   output: {
     path: path.resolve(__dirname, 'build'),
     filename: '[name].[contenthash].js'
   },
+  resolve: {
+    extensions: ['.js', '.jsx', '.ts', '.tsx'],
+  },
   module: {
     rules: [
-      { 
-        test: /\.js?$/, 
+      {
+        test: /\.(js|jsx|tsx|ts)$/,
         loader: 'babel-loader',
         exclude: /node_modules/
-      },
-      {
-      	test: /\.css?$/,
-      	use: ['style-loader', 'css-loader']
       },
       {
         test: /\.(woff|woff2|eot|ttf|otf)$/,
@@ -61,6 +61,7 @@ module.exports = {
     new CleanWebpackPlugin(['build/*']),
     htmlWebpackPlugin,
     new RobotstxtPlugin(options),
-    new DashboardPlugin()
+    new DashboardPlugin(),
+    new Dotenv()
   ]
 };
