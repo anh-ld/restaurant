@@ -9,7 +9,7 @@ const StyledLayout = styled(p => <Pane {...p} />)`
 `
 
 const TableLayout: React.FC<{}> = () => {
-    const tableIDs: any = Array.from(Array(15).keys())
+    const tableIDs: Array<number> = Array.from(Array(15).keys())
 
     return (
         <StyledLayout>

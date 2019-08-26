@@ -20,4 +20,4 @@ const Credit: React.FC<{}> = () => (
     </StyledText>
 )
 
-export default Credit
+export default React.memo(Credit)

@@ -32,17 +32,15 @@ const ColorPalette: React.FC<Props> = ({currentTheme, changeTheme}) => {
 
     return (
         <StyledColor>
-            {buttonColorArray.map((item: ColorObj, index: number) => {
-                return (
-                    <ColorButton
-                        color={item.color}
-                        value={item.value}
-                        key={index}
-                        isActive={item.value === currentTheme}
-                        handleChangeTheme={handleChangeTheme}
-                    />
-                )
-            })}
+            {buttonColorArray.map((item: ColorObj, index: number) => (
+                <ColorButton
+                    color={item.color}
+                    value={item.value}
+                    key={index}
+                    isActive={item.value === currentTheme}
+                    handleChangeTheme={handleChangeTheme}
+                />
+            ))}
         </StyledColor>
     )
 }

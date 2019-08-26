@@ -57,20 +57,18 @@ const mapStateToProps = (state: State) => ({
     dataHistory: state.dataHistory
 })
 
-const mapDispatchToProps = (dispatch: any) => {
-    return {
-        onToggle: (id: number) => {
-            dispatch(toggleTable(id))
-        },
-        onCheckOut: (id: number, tableData: Array<Array<TableDataType>>, uid: string, dataHistory: Array<CustomerData>) => {
-            const total: number = tableData[id].reduce((total: number, item: TableDataType) => {
-                return total + item.price * item.quantity
-            }, 0)
+const mapDispatchToProps = (dispatch: any) => ({
+    onToggle: (id: number) => {
+        dispatch(toggleTable(id))
+    },
+    onCheckOut: (id: number, tableData: Array<Array<TableDataType>>, uid: string, dataHistory: Array<CustomerData>) => {
+        const total: number = tableData[id].reduce((total: number, item: TableDataType) => {
+            return total + item.price * item.quantity
+        }, 0)
 
-            dispatch(clearSelectedTable())
-            dispatch(checkoutTable(total, dataHistory, uid))
-        }
+        dispatch(clearSelectedTable())
+        dispatch(checkoutTable(total, dataHistory, uid))
     }
-}
+})
 
 export default connect(mapStateToProps, mapDispatchToProps)(ToggleTableButton)

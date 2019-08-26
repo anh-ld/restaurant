@@ -1,4 +1,4 @@
-import React, {useRef, useEffect, RefObject} from "react"
+import React, {useRef, useEffect} from "react"
 import {connect} from "react-redux"
 import deleteTableItem from "../../../../actions/orderActions/deleteTableItem"
 import addTableItem from "../../../../actions/orderActions/addTableItem"
@@ -48,6 +48,7 @@ interface Props {
 
 const OrderList: React.FC<Props> = ({items, selectedTable, onAdd, onDelete}) => {
     const orderTable = useRef(null)
+
     useEffect(() => {
         if (items) {
             orderTable.current.scrollIntoView(false)
@@ -66,29 +67,27 @@ const OrderList: React.FC<Props> = ({items, selectedTable, onAdd, onDelete}) => 
                         <TableHead>Actions</TableHead>
                     </tr>
                     </thead>
-                    <tbody>
-                    {items.map((item: TableDataType, i: number) => {
-                        return (
-                            <tr key={i}>
-                                <TableData>{item.name}</TableData>
-                                <TableData>{item.price} $</TableData>
-                                <TableData>{item.quantity}</TableData>
-                                <TableData>
-                                    <ActionButton onClick={() => onDelete(selectedTable, i)}>
-                                        -
-                                    </ActionButton>
-                                    <ActionButton
-                                        onClick={() =>
-                                            onAdd(item.name, item.price, selectedTable)
-                                        }
-                                    >
-                                        +
-                                    </ActionButton>
-                                </TableData>
-                            </tr>
-                        )
-                    })}
-                    </tbody>
+                        <tbody>
+                            {items.map((item: TableDataType, i: number) => (
+                                <tr key={i}>
+                                    <TableData>{item.name}</TableData>
+                                    <TableData>{item.price} $</TableData>
+                                    <TableData>{item.quantity}</TableData>
+                                    <TableData>
+                                        <ActionButton onClick={() => onDelete(selectedTable, i)}>
+                                            -
+                                        </ActionButton>
+                                        <ActionButton
+                                            onClick={() =>
+                                                onAdd(item.name, item.price, selectedTable)
+                                            }
+                                        >
+                                            +
+                                        </ActionButton>
+                                    </TableData>
+                                </tr>
+                            ))}
+                        </tbody>
                 </Table>
             )}
         </StyledOrderList>
@@ -100,15 +99,13 @@ const mapStateToProps = (state: State) => ({
     items: state.tableData[state.selectedTable]
 })
 
-const mapDispatchToProps = (dispatch: any) => {
-    return {
-        onDelete: (tableId: number, id: number) => {
-            dispatch(deleteTableItem(tableId, id))
-        },
-        onAdd: (name: string, price: number, tableId: number) => {
-            dispatch(addTableItem(name, price, tableId))
-        }
+const mapDispatchToProps = (dispatch: any) => ({
+    onDelete: (tableId: number, id: number) => {
+        dispatch(deleteTableItem(tableId, id))
+    },
+    onAdd: (name: string, price: number, tableId: number) => {
+        dispatch(addTableItem(name, price, tableId))
     }
-}
+})
 
 export default connect(mapStateToProps, mapDispatchToProps)(OrderList)

@@ -50,12 +50,10 @@ const TableButton: React.FC<Props> = ({tableStatusData, id, onSelect}) => {
 
 const mapStateToProps = (state: State) => ({tableStatusData: state.tableStatusData})
 
-const mapDispatchToProps = (dispatch: any) => {
-    return {
-        onSelect: (id: number) => {
-            dispatch(selectTable(id))
-        }
+const mapDispatchToProps = (dispatch: any) => ({
+    onSelect: (id: number) => {
+        dispatch(selectTable(id))
     }
-}
+})
 
 export default connect(mapStateToProps, mapDispatchToProps)(TableButton)

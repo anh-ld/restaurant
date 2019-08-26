@@ -29,10 +29,8 @@ const Bill: React.FC<Props> = ({items}) => {
     )
 }
 
-const mapStateToProps = (state: State) => {
-    return {
-        items: state.tableData[state.selectedTable]
-    }
-}
+const mapStateToProps = (state: State) => ({
+    items: state.tableData[state.selectedTable]
+})
 
 export default connect(mapStateToProps)(Bill)
