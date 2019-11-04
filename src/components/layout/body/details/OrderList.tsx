@@ -46,13 +46,16 @@ interface Props {
     onDelete: (selectedTable: number, i: number) => void
 }
 
+let prevItems: Array<TableDataType> = []
+
 const OrderList: React.FC<Props> = ({items, selectedTable, onAdd, onDelete}) => {
     const orderTable = useRef(null)
 
     useEffect(() => {
-        if (items) {
+        if (items && items.length > prevItems.length) {
             orderTable.current.scrollIntoView(false)
         }
+        prevItems = items
     })
 
     return (
@@ -67,27 +70,27 @@ const OrderList: React.FC<Props> = ({items, selectedTable, onAdd, onDelete}) => 
                         <TableHead>Actions</TableHead>
                     </tr>
                     </thead>
-                        <tbody>
-                            {items.map((item: TableDataType, i: number) => (
-                                <tr key={i}>
-                                    <TableData>{item.name}</TableData>
-                                    <TableData>{item.price} $</TableData>
-                                    <TableData>{item.quantity}</TableData>
-                                    <TableData>
-                                        <ActionButton onClick={() => onDelete(selectedTable, i)}>
-                                            -
-                                        </ActionButton>
-                                        <ActionButton
-                                            onClick={() =>
-                                                onAdd(item.name, item.price, selectedTable)
-                                            }
-                                        >
-                                            +
-                                        </ActionButton>
-                                    </TableData>
-                                </tr>
-                            ))}
-                        </tbody>
+                    <tbody>
+                    {items.map((item: TableDataType, i: number) => (
+                        <tr key={i}>
+                            <TableData>{item.name}</TableData>
+                            <TableData>{item.price} $</TableData>
+                            <TableData>{item.quantity}</TableData>
+                            <TableData>
+                                <ActionButton onClick={() => onDelete(selectedTable, i)}>
+                                    -
+                                </ActionButton>
+                                <ActionButton
+                                    onClick={() =>
+                                        onAdd(item.name, item.price, selectedTable)
+                                    }
+                                >
+                                    +
+                                </ActionButton>
+                            </TableData>
+                        </tr>
+                    ))}
+                    </tbody>
                 </Table>
             )}
         </StyledOrderList>
