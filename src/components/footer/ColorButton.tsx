@@ -1,17 +1,22 @@
 import React from "react"
 import styled from "styled-components"
 
-const StyledColorButton = styled.div<{isActive: boolean}>`
+const BaseButton = styled.div`
     width: 20px;
     height: 20px;
-    background-color: ${({color}) => color};
-    border-radius: 50%;
+    border-radius: 4px;
     display: inline-block;
     margin: 0 0.25rem;
+    &:hover {
+        cursor: pointer;
+    }
+`
+
+const StyledColorButton = styled(p => <BaseButton {...p} />)<{isActive: boolean}>`
+    background-color: ${({color}) => color};
     opacity: ${p => (p.isActive && 1) || 0.2};
     &:hover {
         opacity: ${p => (p.isActive && 1) || 0.7};
-        cursor: pointer;
     }
 `
 

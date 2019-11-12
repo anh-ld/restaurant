@@ -9,10 +9,11 @@ import Dashboard from './components/Dashboard'
 import SignIn from './components/SignIn'
 import Footer from './components/Footer'
 import palette, {base} from "./utils/theme";
+import Overlay from './components/atom/Overlay'
 
 const StyledApp = styled.div`
     min-height: 100vh;
-    background-color: ${p => p.theme['0']};
+    background-color: ${p => p.theme['100']};
 `
 
 interface Props {
@@ -51,14 +52,16 @@ const App: React.FC<Props> = ({changeTheme, currentTheme, user, theme, fetchUser
         <ThemeProvider theme={theme}>
             <ThemeProvider theme={base}>
                 <StyledApp>
-                    {user === "None" ? (
-                        <div>
-                            <SignIn/>
-                            <Footer/>
-                        </div>
-                    ) : (
-                        <Dashboard/>
-                    )}
+                    <Overlay>
+                        {user === "None" ? (
+                            <div>
+                                <SignIn/>
+                                <Footer/>
+                            </div>
+                        ) : (
+                            <Dashboard/>
+                        )}
+                    </Overlay>
                 </StyledApp>
             </ThemeProvider>
         </ThemeProvider>

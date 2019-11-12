@@ -18,7 +18,7 @@ const BackDrop = styled.div`
 
 const StyledModal = styled(p => <Pane {...p} />)`
     margin: 0 auto;
-    width: 900px;
+    width: 600px;
 `
 
 const Header = styled.div`
