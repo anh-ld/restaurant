@@ -1,13 +1,15 @@
-import React, {useEffect, useState} from 'react'
+import React, {useLayoutEffect, useState} from 'react'
 import styled from 'styled-components'
 
 const Overlay:React.FC<{}> = (props) => {
     const [innerWidth, setInnerWidth] = useState(null)
 
-    useEffect(() => {
+    useLayoutEffect(() => {
         window.addEventListener('resize', () => {
             setInnerWidth(window.innerWidth)
         })
+
+        setInnerWidth(window.innerWidth)
     }, [])
 
     return (

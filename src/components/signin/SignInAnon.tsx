@@ -1,9 +1,9 @@
 import React from "react"
 import {connect} from "react-redux"
-import {signInAnon} from "../../actions/userActions/signIn"
+import {signInAnon} from "Action/userActions/signIn"
 import styled from "styled-components"
-import Text from '../atom/Text'
-import Link from '../atom/Link'
+import Text from 'Atom/Text'
+import Link from 'Atom/Link'
 
 const StyledText = styled(p => <Text {...p} />)`
     text-align: center;

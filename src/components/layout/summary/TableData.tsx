@@ -1,8 +1,8 @@
 import React from "react"
 import {connect} from "react-redux"
 import styled from "styled-components"
-import {transform, getDMY} from "../../../utils/date"
-import {CustomerData, State} from "../../../types/store"
+import {transform, getDMY} from "Util/date"
+import {CustomerData, State} from "Type/store"
 
 const Table = styled.table`
   margin-top: 1rem;

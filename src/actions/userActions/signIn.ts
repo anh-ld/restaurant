@@ -1,8 +1,7 @@
-import {authRef, GoogleAuthProvider} from '../../config/firebase'
+import {authRef, GoogleAuthProvider} from 'Config/firebase'
 
 export const signInWithGoogle = () => (dispatch: any) => {
     authRef
-    // .signInWithPopup(GoogleAuthProvider)
         .signInWithRedirect(GoogleAuthProvider)
         .catch(error => {
             console.warn(error)

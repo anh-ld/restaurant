@@ -1,13 +1,13 @@
-import React, {useState, memo} from "react"
+import React, {useState} from "react"
 import {connect} from "react-redux"
-import Modal from "../atom/Modal"
+import Modal from "Atom/Modal"
 import CheckOutAlert from "./header/CheckOutAlert"
-import {signOut} from "../../actions/userActions/signOut"
+import {signOut} from "Action/userActions/signOut"
 import styled from "styled-components"
-import {transform, getDMY} from "../../utils/date"
-import {State} from "../../types/store"
-import Button from '../atom/Button'
-import Heading from '../atom/Heading'
+import {transform, getDMY} from "Util/date"
+import {State} from "Type/store"
+import Button from 'Atom/Button'
+import Heading from 'Atom/Heading'
 
 const StyledHeader = styled.div`
   display: flex;

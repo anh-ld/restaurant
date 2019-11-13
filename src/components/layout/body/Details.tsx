@@ -3,8 +3,8 @@ import ToggleTableButton from "./details/ToggleTableButton"
 import OrderList from "./details/OrderList"
 import {connect} from "react-redux"
 import Bill from "./details/Bill"
-import {State} from "../../../types/store"
-import Pane from '../../atom/Pane'
+import {State} from "Type/store"
+import Pane from 'Atom/Pane'
 
 interface Props {
     tableStatus: boolean

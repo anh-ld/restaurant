@@ -1,10 +1,10 @@
 import React from "react"
 import styled from "styled-components"
 import {connect} from "react-redux"
-import {changeTheme} from "../../actions/themeActions/changeTheme"
-import palette from "../../utils/theme"
+import {changeTheme} from "Action/themeActions/changeTheme"
+import palette from "Util/theme"
 import ColorButton from "./ColorButton"
-import {State} from "../../types/store"
+import {State} from "Type/store"
 
 const StyledColor = styled.div`
     height: 20px;

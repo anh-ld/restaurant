@@ -1,7 +1,7 @@
 import React from "react"
 import TableButton from "./tableLayout/TableButton"
 import styled from "styled-components"
-import Pane from '../../atom/Pane'
+import Pane from 'Atom/Pane'
 
 const StyledLayout = styled(p => <Pane {...p} />)`
     display: grid;

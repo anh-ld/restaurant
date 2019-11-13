@@ -1,11 +1,11 @@
 import React from "react"
 import {connect} from "react-redux"
-import toggleTable from "../../../../actions/orderActions/toggleTable"
-import checkoutTable from "../../../../actions/orderActions/checkoutTable"
-import clearSelectedTable from "../../../../actions/orderActions/clearSelectedTable"
+import toggleTable from "Action/orderActions/toggleTable"
+import checkoutTable from "Action/orderActions/checkoutTable"
+import clearSelectedTable from "Action/orderActions/clearSelectedTable"
 import styled from "styled-components"
-import {CustomerData, State, TableDataType} from "../../../../types/store"
-import Button from '../../../atom/Button'
+import {CustomerData, State, TableDataType} from "Type/store"
+import Button from 'Atom/Button'
 
 const CheckInButton = styled(props => <Button {...props} />)``
 

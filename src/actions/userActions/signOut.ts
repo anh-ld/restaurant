@@ -1,4 +1,4 @@
-import {authRef} from '../../config/firebase'
+import {authRef} from 'Config/firebase'
 
 export const signOut = () => (dispatch: any) => {
     authRef

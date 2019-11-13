@@ -1,7 +1,7 @@
 import React from "react"
 import styled from "styled-components"
-import Link from '../atom/Link'
-import Text from '../atom/Text'
+import Link from 'Atom/Link'
+import Text from 'Atom/Text'
 
 const StyledText = styled(p => <Text {...p}/>)`
     font-size: 18px;

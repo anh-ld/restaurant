@@ -1,15 +1,15 @@
 import React, {useLayoutEffect} from "react"
 import {connect} from "react-redux"
-import Loading from "./components/atom/Loading"
-import {fetchUser} from "./actions/userActions/fetchUser"
+import Loading from "Atom/Loading"
+import {fetchUser} from "Action/userActions/fetchUser"
 import styled, {DefaultTheme, ThemeProvider} from "styled-components"
-import {changeTheme} from "./actions/themeActions/changeTheme"
-import {State} from "./types/store"
+import {changeTheme} from "Action/themeActions/changeTheme"
+import {State} from "Type/store"
 import Dashboard from './components/Dashboard'
 import SignIn from './components/SignIn'
 import Footer from './components/Footer'
-import palette, {base} from "./utils/theme";
-import Overlay from './components/atom/Overlay'
+import palette, {base} from "Util/theme";
+import Overlay from 'Atom/Overlay'
 
 const StyledApp = styled.div`
     min-height: 100vh;

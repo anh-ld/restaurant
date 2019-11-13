@@ -1,9 +1,9 @@
 import React from "react"
 import {connect} from "react-redux"
-import selectTable from "../../../../actions/orderActions/selectTable"
+import selectTable from "Action/orderActions/selectTable"
 import styled from "styled-components"
-import {State} from "../../../../types/store"
-import Button from '../../../atom/Button'
+import {State} from "Type/store"
+import Button from 'Atom/Button'
 
 const StyledButton = styled(props => <Button {...props} />)`
     width: 75px;

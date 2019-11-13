@@ -1,6 +1,6 @@
 import React from "react"
 import styled from "styled-components"
-import Heading from '../../atom/Heading'
+import Heading from 'Atom/Heading'
 
 const StyledSection = styled.div`
     margin-right: 80px;

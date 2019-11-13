@@ -1,12 +1,12 @@
 import React, {useState} from "react"
 import {connect} from "react-redux"
 import TableData from "./summary/TableData"
-import Modal from "../atom/Modal"
+import Modal from "Atom/Modal"
 import Section from "./summary/Section"
 import styled from "styled-components"
-import {State} from "../../types/store"
-import Button from '../atom/Button'
-import Heading from '../atom/Heading'
+import {State} from "Type/store"
+import Button from 'Atom/Button'
+import Heading from 'Atom/Heading'
 
 const StyledSummary = styled.div`
     display: flex;

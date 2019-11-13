@@ -1,6 +1,6 @@
-import {db} from '../../config/firebase'
-import {getDMY} from "../../utils/date"
-import {CustomerData} from "../../types/store"
+import {db} from 'Config/firebase'
+import {getDMY} from "Util/date"
+import {CustomerData} from "Type/store"
 
 const checkoutTable = (total: number, dataHistory: Array<CustomerData>, uid: string) => (dispatch: any) => {
     const {date, month, year} = getDMY()

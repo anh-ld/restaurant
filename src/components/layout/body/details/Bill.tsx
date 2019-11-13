@@ -1,8 +1,8 @@
 import React from "react"
 import {connect} from "react-redux"
 import styled from "styled-components"
-import Heading from '../../../atom/Heading'
-import {State, TableDataType} from "../../../../types/store"
+import Heading from 'Atom/Heading'
+import {State, TableDataType} from "Type/store"
 
 const StyledBill = styled(p => <Heading variant='medium' {...p} />)`
     text-align: center;

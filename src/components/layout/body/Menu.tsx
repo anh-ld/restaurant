@@ -1,9 +1,9 @@
 import React from "react"
 import OrderButton from "./menu/OrderButton"
-import menu from "../../../utils/menu"
+import menu from "Util/menu"
 import styled from "styled-components"
-import {Item} from "../../../types/action"
-import Pane from '../../atom/Pane'
+import {Item} from "Type/action"
+import Pane from 'Atom/Pane'
 
 const StyledPane = styled(p => <Pane {...p} />)`
     display: grid;

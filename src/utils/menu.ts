@@ -1,4 +1,4 @@
-import {Item} from "../types/action";
+import {Item} from "Type/action";
 
 const menu: Array<Item> = [
 	{name: "Water", price: 0},

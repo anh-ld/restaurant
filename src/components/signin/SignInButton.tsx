@@ -1,7 +1,7 @@
 import React from "react"
 import {connect} from "react-redux"
-import {signInWithGoogle} from "../../actions/userActions/signIn"
-import Button  from '../atom/Button'
+import {signInWithGoogle} from "Action/userActions/signIn"
+import Button from 'Atom/Button'
 
 interface Props {
     isSigningIn: boolean

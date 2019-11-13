@@ -3,11 +3,11 @@ import ReactDOM from "react-dom"
 import App from "./App"
 import {createStore, applyMiddleware} from "redux"
 import {Provider} from "react-redux"
-import reducer from "./reducer"
+import reducer from "Reducer/index"
 import thunk from "redux-thunk"
 import {createGlobalStyle} from "styled-components"
-import horizonrounded from './assets/horizonrounded.woff'
-import horizonrounded2 from './assets/horizonrounded.woff2'
+import horizonrounded from 'Asset/horizonrounded.woff'
+import horizonrounded2 from 'Asset/horizonrounded.woff2'
 
 const GlobalStyles = createGlobalStyle`
     @font-face {

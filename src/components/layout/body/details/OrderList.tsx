@@ -1,10 +1,10 @@
 import React, {useRef, useEffect} from "react"
 import {connect} from "react-redux"
-import deleteTableItem from "../../../../actions/orderActions/deleteTableItem"
-import addTableItem from "../../../../actions/orderActions/addTableItem"
+import deleteTableItem from "Action/orderActions/deleteTableItem"
+import addTableItem from "Action/orderActions/addTableItem"
 import styled from "styled-components"
-import {State, TableDataType} from "../../../../types/store"
-import Button from "../../../atom/Button"
+import {State, TableDataType} from "Type/store"
+import Button from "Atom/Button"
 
 const StyledOrderList = styled.div`
     height: 240px;

@@ -13,7 +13,17 @@
     "strict": true,
     "alwaysStrict": true,
     "strictNullChecks": false,
-    "downlevelIteration": true
+    "downlevelIteration": true,
+    "baseUrl": ".",
+    "paths": {
+      "Atom/*": ["src/atom/*"],
+      "Action/*": ["src/actions/*"],
+      "Reducer/*": ["src/reducer/*"],
+      "Type/*": ["src/types/*"],
+      "Util/*": ["src/utils/*"],
+      "Asset/*": ["src/assets/*"],
+      "Config/*": ["src/config/*"]
+    }
   },
   "include": [
     "./src/"

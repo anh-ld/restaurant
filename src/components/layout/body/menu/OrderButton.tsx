@@ -1,8 +1,8 @@
 import React from "react"
 import {connect} from "react-redux"
-import addTableItem from "../../../../actions/orderActions/addTableItem"
-import Button from '../../../atom/Button'
-import {State} from "../../../../types/store"
+import addTableItem from "Action/orderActions/addTableItem"
+import Button from 'Atom/Button'
+import {State} from "Type/store"
 
 interface Props {
     name: string
