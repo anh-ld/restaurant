@@ -1,0 +1,7 @@
+/* GENERAL RULES */
+@font-face {
+    font-family: 'horizon_roundedbold';
+    src: url('./assets/horizonrounded.woff2') format('woff2'), url('./assets/horizonrounded.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}

@@ -1,19 +1,17 @@
-import React, {useLayoutEffect} from "react"
+import React, {useLayoutEffect, lazy, Suspense} from "react"
 import {connect} from "react-redux"
 import Loading from "Atom/Loading"
 import {fetchUser} from "Action/userActions/fetchUser"
 import styled, {DefaultTheme, ThemeProvider} from "styled-components"
 import {changeTheme} from "Action/themeActions/changeTheme"
 import {State} from "Type/store"
-import Dashboard from './components/Dashboard'
-import SignIn from './components/SignIn'
-import Footer from './components/Footer'
 import palette, {base} from "Util/theme";
 import Overlay from 'Atom/Overlay'
 
 const StyledApp = styled.div`
     min-height: 100vh;
-    background-color: ${p => p.theme['100']};
+    height: 100vh;
+    background-color: ${p => p.theme['200']};
 `
 
 interface Props {
@@ -23,6 +21,10 @@ interface Props {
     theme: DefaultTheme
     fetchUser: () => void
 }
+
+const Dashboard = lazy(() => import('./components/Dashboard'))
+const SignIn = lazy(() => import('./components/SignIn'))
+const Footer = lazy(() => import('./components/Footer'))
 
 const App: React.FC<Props> = ({changeTheme, currentTheme, user, theme, fetchUser}) => {
     useLayoutEffect(() => {
@@ -43,7 +45,9 @@ const App: React.FC<Props> = ({changeTheme, currentTheme, user, theme, fetchUser
     if (user === null) {
         return (
             <ThemeProvider theme={theme}>
-                <Loading/>
+                <StyledApp>
+                    <Loading color={theme['800']} dimension={60} />
+                </StyledApp>
             </ThemeProvider>
         )
     }
@@ -54,12 +58,14 @@ const App: React.FC<Props> = ({changeTheme, currentTheme, user, theme, fetchUser
                 <StyledApp>
                     <Overlay>
                         {user === "None" ? (
-                            <div>
-                                <SignIn/>
-                                <Footer/>
-                            </div>
+                            <Suspense fallback={<Loading />}>
+                                <SignIn />
+                                <Footer />
+                            </Suspense>
                         ) : (
-                            <Dashboard/>
+                            <Suspense fallback={<Loading />}>
+                                <Dashboard />
+                            </Suspense>
                         )}
                     </Overlay>
                 </StyledApp>

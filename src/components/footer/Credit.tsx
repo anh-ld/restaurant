@@ -9,7 +9,6 @@ const StyledText = styled(p => <Text {...p}/>)`
 
 const Credit: React.FC<{}> = () => (
     <StyledText>
-        made by&nbsp;
         <Link
             href="https://github.com/culee"
             target="_blank"
