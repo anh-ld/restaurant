@@ -4,7 +4,6 @@ import Heading from 'Atom/Heading'
 
 const StyledSection = styled.div`
     margin-right: 80px;
-    display: inline-block;
 `
 
 const Content = styled.span`
@@ -25,7 +24,7 @@ interface Props {
 }
 
 const Section: React.FC<Props> = ({title, content, unit, unitBefore}) => (
-    <StyledSection>
+    <StyledSection className="dib">
         <Heading variant='tiny'>{title}</Heading>
         {unitBefore && <Unit>{unit}</Unit>}
         <Content>{content}</Content>

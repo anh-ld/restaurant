@@ -9,7 +9,6 @@ import {State} from "Type/store"
 
 const StyledDashboard = styled.div`
     width: 960px;
-    margin: 0 auto;
     padding: 0 16px;
 `
 
@@ -24,7 +23,7 @@ const Dashboard: React.FC<Props> = ({fetchData, uid}) => {
     })
 
     return (
-        <StyledDashboard>
+        <StyledDashboard className="m-auto">
             <Header/>
             <Summary/>
             <Body/>

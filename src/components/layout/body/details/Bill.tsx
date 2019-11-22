@@ -5,7 +5,6 @@ import Heading from 'Atom/Heading'
 import {State, TableDataType} from "Type/store"
 
 const StyledBill = styled(p => <Heading variant='medium' {...p} />)`
-    text-align: center;
     padding: 8px 0;
     color: ${p => p.theme['700']}
 `
@@ -22,7 +21,7 @@ const Bill: React.FC<Props> = ({items}) => {
     const total: any = items.reduce((total: number, item: TableDataType) => total + item.price * item.quantity, 0)
 
     return (
-        <StyledBill>
+        <StyledBill className="tc">
             Total: {total}
             <Unit>$</Unit>
         </StyledBill>

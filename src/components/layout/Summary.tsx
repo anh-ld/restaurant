@@ -1,4 +1,4 @@
-import React, {useState} from "react"
+import React from "react"
 import {connect} from "react-redux"
 import TableData from "./summary/TableData"
 import Modal from "Atom/Modal"
@@ -8,14 +8,7 @@ import {State} from "Type/store"
 import Button from 'Atom/Button'
 import Heading from 'Atom/Heading'
 
-const StyledSummary = styled.div`
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-`
-
 const Name = styled(p => <Heading variant='medium' {...p} />)`
-    display: inline-block;
     color: ${p => p.theme['N700']};
 `
 
@@ -33,34 +26,29 @@ interface Props {
 }
 
 const Summary: React.FC<Props> = ({tableStatusData, moneyEarned, customer, user}) => {
-    const [showDataHistory, setShowDataHistory] = useState(false)
     const occupiedTable: number = tableStatusData.filter(
         (tableStatus: boolean) => tableStatus === true
     ).length
 
     return (
-        <StyledSummary>
+        <div className="df jcsb aic">
             <div>
                 <Section title="Occupied Table" content={occupiedTable} unit="/15"/>
                 <Section title="Money" content={moneyEarned} unit="$" unitBefore/>
                 <Section title="Customer" content={customer} unit=""/>
             </div>
             <div>
-                <Name>{user.displayName ? user.displayName : "Anonymous"}</Name>
-                <HistoryButton
-                    onClick={() => setShowDataHistory(!showDataHistory)}
+                <Name className="dib">
+                    {user.displayName ? user.displayName : "Anonymous"}
+                </Name>
+                <Modal
+                    title="History"
+                    from={<HistoryButton>History</HistoryButton>}
                 >
-                    History
-                </HistoryButton>
+                    <TableData />
+                </Modal>
             </div>
-            <Modal
-                show={showDataHistory}
-                toggleModal={() => setShowDataHistory(!showDataHistory)}
-                title="History"
-            >
-                <TableData/>
-            </Modal>
-        </StyledSummary>
+        </div>
     )
 }
 

@@ -1,4 +1,4 @@
-import React from "react"
+import React, {useState} from "react"
 import ReactDOM from 'react-dom'
 import styled from "styled-components"
 import Button from './Button'
@@ -19,6 +19,7 @@ const BackDrop = styled.div`
 const StyledModal = styled(p => <Pane {...p} />)`
     margin: 0 auto;
     width: 600px;
+    max-height: 80vh;
 `
 
 const Header = styled.div`
@@ -37,30 +38,35 @@ const CloseButton = styled(props => <Button {...props} />)`
 `
 
 interface Props {
-    show: boolean
-    toggleModal: () => void
     title: string
-    children: React.ReactNode
+    children: React.ReactElement
+    from?: React.ReactElement
+    forceShow?: boolean
 }
 
-const Modal: React.FC<Props> = ({show, toggleModal, title, children}) => {
-    if (!show) {
-        return null
-    }
+const Modal: React.FC<Props> = ({title, children, from, forceShow}) => {
+    const [show, setShow] = useState(forceShow || false)
 
-    return ReactDOM.createPortal((
-        <BackDrop>
-            <StyledModal>
-                <Header>
-                    <Title>{title}</Title>
-                    <CloseButton onClick={toggleModal}>
-                        x
-                    </CloseButton>
-                </Header>
-                {children}
-            </StyledModal>
-        </BackDrop>
-    ), document.body)
+    return (
+        <>
+            {from && React.cloneElement(from, {
+                onClick: () => setShow(!show)
+            })}
+            {show && ReactDOM.createPortal((
+                <BackDrop onClick={() => setShow(false)}>
+                    <StyledModal>
+                        <Header>
+                            <Title>{title}</Title>
+                            <CloseButton onClick={() => setShow(false)}>
+                                x
+                            </CloseButton>
+                        </Header>
+                        {children}
+                    </StyledModal>
+                </BackDrop>
+            ), document.body)}
+        </>
+    )
 }
 
 export default Modal

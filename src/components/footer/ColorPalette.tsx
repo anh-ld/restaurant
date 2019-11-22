@@ -1,4 +1,4 @@
-import React from "react"
+import React, {useCallback} from "react"
 import styled from "styled-components"
 import {connect} from "react-redux"
 import {changeTheme} from "Action/themeActions/changeTheme"
@@ -8,7 +8,6 @@ import {State} from "Type/store"
 
 const StyledColor = styled.div`
     height: 20px;
-    text-align: center;
 `
 
 interface ColorObj {
@@ -25,20 +24,20 @@ const buttonColorArray: Array<ColorObj> = Object.entries(palette).map(item => ({
 
 const ColorPalette: React.FC<Props> = ({currentTheme, changeTheme}) => {
     const handleChangeTheme = (color: string) => {
-        if (currentTheme !== color) {
-            changeTheme(color)
-        }
+        changeTheme(color)
     }
 
+    const memoizedHandleChangeTheme = useCallback(handleChangeTheme, [])
+
     return (
-        <StyledColor>
+        <StyledColor className="tc">
             {buttonColorArray.map((item: ColorObj, index: number) => (
                 <ColorButton
                     color={item.color}
                     value={item.value}
                     key={index}
                     isActive={item.value === currentTheme}
-                    handleChangeTheme={handleChangeTheme}
+                    handleChangeTheme={memoizedHandleChangeTheme}
                 />
             ))}
         </StyledColor>

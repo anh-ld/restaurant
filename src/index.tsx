@@ -1,7 +1,7 @@
 import React from "react"
 import ReactDOM from "react-dom"
 import App from "./App"
-import {createStore, applyMiddleware} from "redux"
+import {applyMiddleware, createStore} from "redux"
 import {Provider} from "react-redux"
 import reducer from "Reducer/index"
 import thunk from "redux-thunk"
@@ -14,6 +14,18 @@ const GlobalStyles = createGlobalStyle`
         padding: 0;
         font-family: 'horizon_roundedbold', sans-serif;
     }
+    
+    .m-auto { margin: 0  auto; }
+    .p-16 { padding: 16px; }
+    .tc { text-align: center; }
+    .dib { display: inline-block; }
+    
+    .dg { display: grid; }
+    
+    .df { display: flex; }
+    .jcc { justify-content: center; }
+    .aic { align-items: center; }
+    .jcsb { justify-content: space-between; }
 `
 
 const store: any = createStore(reducer, applyMiddleware(thunk))

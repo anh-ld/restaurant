@@ -4,16 +4,13 @@ import Modal from "Atom/Modal"
 import CheckOutAlert from "./header/CheckOutAlert"
 import {signOut} from "Action/userActions/signOut"
 import styled from "styled-components"
-import {transform, getDMY} from "Util/date"
+import {getDMY, transform} from "Util/date"
 import {State} from "Type/store"
 import Button from 'Atom/Button'
 import Heading from 'Atom/Heading'
 
 const StyledHeader = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 24px 0;
+    padding: 24px 0;
 `
 
 const Title = styled(p => <Heading variant='large' {...p} />)`
@@ -21,7 +18,6 @@ const Title = styled(p => <Heading variant='large' {...p} />)`
 `
 
 const Date = styled(p => <Heading variant='medium' {...p} />)`
-    display: inline-block;
     color: ${p => p.theme['N700']}
 `
 
@@ -49,21 +45,24 @@ const Header: React.FC<Props> = ({tableStatusData, signOut}) => {
     }
 
     return (
-        <StyledHeader>
+        <StyledHeader className="df jcsb aic">
             <Title>Hanoi Pizza Restaurant</Title>
             <div>
-                <Date>{transform(date)}/{transform(month)}/{year}</Date>
+                <Date className="dib">
+                    {transform(date)}/{transform(month)}/{year}
+                </Date>
                 <SignOutButton onClick={handleClick}>
                     Go-out
                 </SignOutButton>
             </div>
-            <Modal
-                show={showAlert}
-                toggleModal={() => setShowAlert(!showAlert)}
-                title="Warning"
-            >
-                <CheckOutAlert/>
-            </Modal>
+            {showAlert && (
+                <Modal
+                    title="Warning"
+                    forceShow
+                >
+                    <CheckOutAlert/>
+                </Modal>
+            )}
         </StyledHeader>
     )
 }

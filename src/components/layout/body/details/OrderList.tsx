@@ -1,4 +1,4 @@
-import React, {useRef, useEffect} from "react"
+import React, {useEffect, useRef} from "react"
 import {connect} from "react-redux"
 import deleteTableItem from "Action/orderActions/deleteTableItem"
 import addTableItem from "Action/orderActions/addTableItem"
@@ -31,6 +31,13 @@ const TableData = styled.td`
     padding: 0.4rem 0.2rem;
     border-bottom: 1px solid #f8f9f9;
     color: #333333;
+    
+    &:last-child {
+        display: flex;
+        button ~ button {
+            margin-left: 4px;
+        }
+    }
 `
 
 const ActionButton = styled(props => <Button {...props} />)`

@@ -1,4 +1,4 @@
-import React, {useLayoutEffect, lazy, Suspense} from "react"
+import React, {lazy, Suspense, useLayoutEffect} from "react"
 import {connect} from "react-redux"
 import Loading from "Atom/Loading"
 import {fetchUser} from "Action/userActions/fetchUser"
@@ -58,12 +58,12 @@ const App: React.FC<Props> = ({changeTheme, currentTheme, user, theme, fetchUser
                 <StyledApp>
                     <Overlay>
                         {user === "None" ? (
-                            <Suspense fallback={<Loading />}>
+                            <Suspense fallback={<Loading color={theme['800']} dimension={60} />}>
                                 <SignIn />
                                 <Footer />
                             </Suspense>
                         ) : (
-                            <Suspense fallback={<Loading />}>
+                            <Suspense fallback={<Loading color={theme['800']} dimension={60} />}>
                                 <Dashboard />
                             </Suspense>
                         )}

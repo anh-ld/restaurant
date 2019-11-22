@@ -1,11 +1,10 @@
-import React from "react"
+import React, {memo} from "react"
 import styled from "styled-components"
 
-const BaseButton = styled.div`
+const BaseButton = styled.div.attrs({className: 'dib'})`
     width: 20px;
     height: 20px;
     border-radius: 4px;
-    display: inline-block;
     margin: 0 0.25rem;
     &:hover {
         cursor: pointer;
@@ -35,4 +34,4 @@ const ColorButton: React.FC<Props> = ({color, value, isActive, handleChangeTheme
     />
 )
 
-export default ColorButton
+export default memo(ColorButton)

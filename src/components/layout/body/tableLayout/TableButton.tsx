@@ -24,12 +24,6 @@ const SelectedTableButton = styled(props => <StyledButton {...props} />)`
     background-color: ${p => p.theme['400']};
 `
 
-const TableButtonWrapper = styled.div`
-    display: flex;
-    justify-content: center;
-    align-items: center;
-`
-
 interface Props {
     tableStatusData: Array<boolean>
     id: number
@@ -40,11 +34,11 @@ const TableButton: React.FC<Props> = ({tableStatusData, id, onSelect}) => {
     const RenderTableButton = tableStatusData[id] ? SelectedTableButton : StyledTableButton
 
     return (
-        <TableButtonWrapper>
+        <div className="df jcc aic">
             <RenderTableButton onClick={() => onSelect(id)}>
                 {id}
             </RenderTableButton>
-        </TableButtonWrapper>
+        </div>
     )
 }
 

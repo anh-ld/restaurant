@@ -5,12 +5,10 @@ import ColorPalette from "./footer/ColorPalette"
 
 const StyledFooter = styled.div`
     padding: 16px;
-    display: flex;
-    justify-content: space-between;
 `
 
 const Footer: React.FC<{}> = () => (
-    <StyledFooter>
+    <StyledFooter className="df jcsb">
         <Credit/>
         <ColorPalette/>
     </StyledFooter>

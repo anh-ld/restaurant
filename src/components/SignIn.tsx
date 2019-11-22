@@ -5,7 +5,6 @@ import styled from "styled-components"
 
 const StyledSignIn = styled.div`
     width: 300px;
-    margin: 0 auto;
     padding: calc(50vh - 38px - 26px) 0;
 `
 
@@ -13,7 +12,7 @@ const SignIn: React.FC<{}> = () => {
     const [isSigningIn, setIsSigningIn] = useState(false)
 
     return (
-        <StyledSignIn>
+        <StyledSignIn className="m-auto">
             <SignInButton
                 isSigningIn={isSigningIn}
                 handleSignInClick={() => setIsSigningIn(true)}

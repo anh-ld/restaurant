@@ -10,13 +10,13 @@ const StyledLoading = styled.div`
 `
 
 interface LoadingProps {
-    dimension?: number
-    color?: string
+    dimension: number
+    color: string
 }
 
 const Loading: React.FC<LoadingProps> = (props) => {
-    const dimension = props.dimension || 45
-    const color = props.color || "#fff"
+    const dimension = props.dimension
+    const color = props.color
 
     return (
         <StyledLoading>

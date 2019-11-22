@@ -6,12 +6,11 @@ import {Item} from "Type/action"
 import Pane from 'Atom/Pane'
 
 const StyledPane = styled(p => <Pane {...p} />)`
-    display: grid;
     grid-template-columns: repeat(7, 1fr);
     grid-gap: 8px;
 `
 const Menu: React.FC<{}> = () => (
-    <StyledPane>
+    <StyledPane className='dg'>
         {menu.map((item: Item, index: number) => (
             <OrderButton name={item.name} price={item.price} key={index}/>
         ))}

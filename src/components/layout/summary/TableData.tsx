@@ -1,21 +1,17 @@
 import React from "react"
 import {connect} from "react-redux"
 import styled from "styled-components"
-import {transform, getDMY} from "Util/date"
+import {getDMY, transform} from "Util/date"
 import {CustomerData, State} from "Type/store"
 
 const Table = styled.table`
-  margin-top: 1rem;
-  width: 100%;
-  border-collapse: collapse;
-`
-
-const Cell = styled.td`
-  text-align: center;
+    margin-top: 1rem;
+    width: 100%;
+    border-collapse: collapse;
 `
 
 const Head = styled.th`
-  border-bottom: 1px solid #edeff0;
+    border-bottom: 1px solid #edeff0;
 `
 
 interface Props {
@@ -33,7 +29,7 @@ const TableData: React.FC<Props> = ({data}) => {
     const tableData: React.ReactNode = reversedData.map((item: CustomerData, i: number) => (
         <tr key={i}>
             <th scope="row">{i + 1}</th>
-            <Cell>
+            <td className="tc">
                 {item.month === month && item.year === year
                     ? item.date === date
                         ? "Today"
@@ -41,9 +37,9 @@ const TableData: React.FC<Props> = ({data}) => {
                             ? "Yesterday"
                             : `${transform(item.date)}/${transform(item.month)}/${item.year}`
                     : `${transform(item.date)}/${transform(item.month)}/${item.year}`}
-            </Cell>
-            <Cell>{item.customer}</Cell>
-            <Cell>{item.money}</Cell>
+            </td>
+            <td className="tc">{item.customer}</td>
+            <td className="tc">{item.money}</td>
         </tr>
     ))
 

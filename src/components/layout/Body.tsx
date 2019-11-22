@@ -5,7 +5,6 @@ import Menu from "./body/Menu"
 import styled from "styled-components"
 
 const Wrapper = styled.div`
-    display: grid;
     margin: 24px 0 16px 0;
     height: 350px;
     grid-template-columns: 3fr 5fr;
@@ -14,7 +13,7 @@ const Wrapper = styled.div`
 
 const Body: React.FC<{}> = () => (
     <>
-        <Wrapper>
+        <Wrapper className="dg">
             <Details/>
             <TableLayout/>
         </Wrapper>
