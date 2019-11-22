@@ -1,17 +1,15 @@
 import {authRef} from 'Config/firebase'
 
 export const fetchUser = () => (dispatch: any) => {
+    const dispatchUser = (payload: any) => {
+        dispatch({ type: "FETCH_USER", payload})
+    }
+
     authRef.onAuthStateChanged(user => {
         if (user) {
-            dispatch({
-                type: "FETCH_USER",
-                payload: user
-            })
+            dispatchUser(user)
         } else {
-            dispatch({
-                type: "FETCH_USER",
-                payload: "None"
-            })
+            dispatchUser("None")
         }
     })
 }

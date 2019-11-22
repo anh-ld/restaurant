@@ -1,17 +1,11 @@
 import {authRef, GoogleAuthProvider} from 'Config/firebase'
 
-export const signInWithGoogle = () => (dispatch: any) => {
-    authRef
-        .signInWithRedirect(GoogleAuthProvider)
-        .catch(error => {
-            console.warn(error)
-        })
+export const signInWithGoogle = () => async (dispatch: any) => {
+    try { await authRef.signInWithRedirect(GoogleAuthProvider) }
+    catch (e) { console.warn(e) }
 }
 
-export const signInAnon = () => (dispatch: any) => {
-    authRef
-        .signInAnonymously()
-        .catch(error => {
-            console.warn(error)
-        })
+export const signInAnon = () => async (dispatch: any) => {
+    try { await authRef.signInAnonymously()}
+    catch (e) { console.warn(e) }
 }

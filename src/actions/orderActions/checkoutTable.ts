@@ -2,7 +2,7 @@ import {db} from 'Config/firebase'
 import {getDMY} from "Util/date"
 import {CustomerData} from "Type/store"
 
-const checkoutTable = (total: number, dataHistory: Array<CustomerData>, uid: string) => (dispatch: any) => {
+const checkoutTable = (total: number, dataHistory: Array<CustomerData>, uid: string) => async (dispatch: any) => {
     const {date, month, year} = getDMY()
 
     let todayData: any = dataHistory.find((item: CustomerData) => {
@@ -10,30 +10,29 @@ const checkoutTable = (total: number, dataHistory: Array<CustomerData>, uid: str
     })
 
     if (todayData === undefined) {
-        db.collection('db').doc(uid).set({
+        await db.collection('db').doc(uid).set({
             data: [...dataHistory, {date, month, year, money: total, customer: 1}]
         })
-            .then(() => {
-                dispatch({
-                    type: "CHECK_OUT",
-                    data: [...dataHistory, {date, month, year, money: total, customer: 1}],
-                    amount: total
-                })
-            })
+
+        dispatch({
+            type: "CHECK_OUT",
+            data: [...dataHistory, {date, month, year, money: total, customer: 1}],
+            amount: total
+        })
     } else {
         let dataHistoryCopy: Array<CustomerData> = dataHistory.slice()
         let lastItem: CustomerData = dataHistoryCopy.pop()
         dataHistoryCopy.push({date, month, year, money: total + lastItem.money, customer: lastItem.customer + 1})
-        db.collection('db').doc(uid).set({
+
+        await db.collection('db').doc(uid).set({
             data: dataHistoryCopy
         })
-            .then(() => {
-                dispatch({
-                    type: "CHECK_OUT",
-                    data: dataHistoryCopy,
-                    amount: total
-                })
-            })
+
+        dispatch({
+            type: "CHECK_OUT",
+            data: dataHistoryCopy,
+            amount: total
+        })
     }
 }
 

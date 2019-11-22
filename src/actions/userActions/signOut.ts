@@ -1,14 +1,9 @@
 import {authRef} from 'Config/firebase'
 
-export const signOut = () => (dispatch: any) => {
-    authRef
-        .signOut()
-        .then(() => {
-            dispatch({
-                type: "SIGN_OUT",
-            })
-        })
-        .catch(error => {
-            console.warn(error)
-        })
+export const signOut = () => async (dispatch: any) => {
+    try {
+        await authRef.signOut()
+        dispatch({type: "SIGN_OUT"})
+    }
+    catch (e) { console.warn(e) }
 }
