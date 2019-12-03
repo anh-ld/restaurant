@@ -1,7 +1,9 @@
 import {combineReducers} from 'redux'
-import {getDMY} from '../utils/date'
-import palette from '../utils/theme'
-import {TableDataType, CustomerData, ThemeState} from "../types/store";
+import {getDMY} from "Util/date"
+import palette from 'Util/theme'
+import {TableDataType, CustomerData, ThemeState} from "Type/store"
+import {Action} from 'Type/action'
+import {DefaultTheme} from 'styled-components'
 
 const {date, month, year} = getDMY()
 
@@ -12,14 +14,13 @@ let initialTableData: Array<Array<TableDataType>> = new Array(16).fill([])
 let initialTableStatusData: Array<boolean> = new Array(16).fill(false)
 
 // table data reducer
-const tableData = (state = initialTableData, action: any) => {
+const tableData = (state: Array<Array<TableDataType>> = initialTableData, action: Action) => {
+    let stateCopy: Array<Array<TableDataType>> = []
     switch (action.type) {
         case "ADD_TABLE_ITEM":
-            let stateCopy: Array<Array<TableDataType>> = [];
             for (let i = 0; i < 16; i++) {
                 stateCopy.push(state[i].slice())
             }
-            // stateCopy[action.tableId].push(action.item);
             let checkItemExist: boolean = false
             for (let i = 0; i < stateCopy[action.tableId].length; i++) {
                 if (action.item.name === stateCopy[action.tableId][i].name) {
@@ -35,24 +36,22 @@ const tableData = (state = initialTableData, action: any) => {
             return stateCopy
 
         case "DELETE_TABLE_ITEM":
-            let stateCopy1: Array<Array<TableDataType>> = []
             for (let i = 0; i < 16; i++) {
-                stateCopy1.push(state[i].slice())
+                stateCopy.push(state[i].slice())
             }
-            if (stateCopy1[action.tableId][action.id].quantity === 1) {
-                stateCopy1[action.tableId].splice(action.id, 1)
+            if (stateCopy[action.tableId][action.id].quantity === 1) {
+                stateCopy[action.tableId].splice(action.id, 1)
             } else {
-                stateCopy1[action.tableId][action.id].quantity -= 1
+                stateCopy[action.tableId][action.id].quantity -= 1
             }
-            return stateCopy1
+            return stateCopy
 
         case "TOGGLE_TABLE":
-            let stateCopy2: Array<Array<TableDataType>> = []
             for (let i = 0; i < 16; i++) {
-                stateCopy2.push(state[i].slice())
+                stateCopy.push(state[i].slice())
             }
-            stateCopy2[action.id] = []
-            return stateCopy2
+            stateCopy[action.id] = []
+            return stateCopy
 
         default:
             return state
@@ -60,7 +59,7 @@ const tableData = (state = initialTableData, action: any) => {
 };
 
 // table status data
-const tableStatusData = (state = initialTableStatusData, action: any) => {
+const tableStatusData = (state: Array<boolean> = initialTableStatusData, action: Action) => {
     switch (action.type) {
         case "TOGGLE_TABLE":
             let stateCopy: Array<boolean> = state.slice()
@@ -73,7 +72,7 @@ const tableStatusData = (state = initialTableStatusData, action: any) => {
 };
 
 // selected table
-const selectedTable = (state: number | null = null, action: any) => {
+const selectedTable = (state: number | null = null, action: Action) => {
     switch (action.type) {
         case "SELECT_TABLE":
             return action.id
@@ -87,7 +86,7 @@ const selectedTable = (state: number | null = null, action: any) => {
 };
 
 // money
-const moneyEarned = (state: number = 0, action: any) => {
+const moneyEarned = (state: number = 0, action: Action) => {
     switch (action.type) {
         case "FETCH_DATA":
             const data: CustomerData = action.payload.find((item: any) => {
@@ -110,7 +109,7 @@ const moneyEarned = (state: number = 0, action: any) => {
 };
 
 // customer number
-const totalCustomer = (state: number = 0, action: any) => {
+const totalCustomer = (state: number = 0, action: Action) => {
     switch (action.type) {
         case "FETCH_DATA":
             const data: CustomerData = action.payload.find((item: any) => {
@@ -133,7 +132,7 @@ const totalCustomer = (state: number = 0, action: any) => {
 };
 
 // user info
-const user = (state: any = null, action: any) => {
+const user = (state: any = null, action: Action) => {
     switch (action.type) {
         case "FETCH_USER":
             return action.payload
@@ -147,7 +146,7 @@ const user = (state: any = null, action: any) => {
 };
 
 // data from the past reducer
-const dataHistory = (state: Array<CustomerData> = [], action: any) => {
+const dataHistory = (state: Array<CustomerData> = [], action: Action) => {
     switch (action.type) {
         case "FETCH_DATA":
             return action.payload
@@ -169,10 +168,10 @@ const initThemeState: ThemeState = {
 }
 
 // theme
-const theme = (state = initThemeState, action: any) => {
+const theme = (state: ThemeState = initThemeState, action: Action) => {
     switch (action.type) {
         case "CHANGE_THEME":
-            const newColorPalette: any = palette[action.color]
+            const newColorPalette: DefaultTheme = palette[action.color]
             return {
                 palette: newColorPalette,
                 color: action.color
@@ -181,7 +180,6 @@ const theme = (state = initThemeState, action: any) => {
         default:
             return state
     }
-    return state
 }
 
 const reducer = combineReducers({

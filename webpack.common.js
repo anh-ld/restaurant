@@ -29,7 +29,7 @@ module.exports = {
         Atom: path.resolve(__dirname, 'src/atom/'),
         Action: path.resolve(__dirname, 'src/actions/'),
         Reducer: path.resolve(__dirname, 'src/reducer/'),
-        Types: path.resolve(__dirname, 'src/types/'),
+        Type: path.resolve(__dirname, 'src/types/'),
         Util: path.resolve(__dirname, 'src/utils/'),
         Asset: path.resolve(__dirname, 'src/assets/'),
         Config: path.resolve(__dirname, 'src/config/'),

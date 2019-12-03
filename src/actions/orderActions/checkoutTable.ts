@@ -5,23 +5,22 @@ import {CustomerData} from "Type/store"
 const checkoutTable = (total: number, dataHistory: Array<CustomerData>, uid: string) => async (dispatch: any) => {
     const {date, month, year} = getDMY()
 
-    let todayData: any = dataHistory.find((item: CustomerData) => {
+    const todayData: CustomerData = dataHistory.find((item: CustomerData) => {
         return item.date === date && item.month === month && item.year === year
     })
 
     if (todayData === undefined) {
-        await db.collection('db').doc(uid).set({
-            data: [...dataHistory, {date, month, year, money: total, customer: 1}]
-        })
+        const data = [...dataHistory, {date, month, year, money: total, customer: 1}]
+        await db.collection('db').doc(uid).set({data})
 
         dispatch({
             type: "CHECK_OUT",
-            data: [...dataHistory, {date, month, year, money: total, customer: 1}],
+            data,
             amount: total
         })
     } else {
-        let dataHistoryCopy: Array<CustomerData> = dataHistory.slice()
-        let lastItem: CustomerData = dataHistoryCopy.pop()
+        const dataHistoryCopy: Array<CustomerData> = dataHistory.slice()
+        const lastItem: CustomerData = dataHistoryCopy.pop()
         dataHistoryCopy.push({date, month, year, money: total + lastItem.money, customer: lastItem.customer + 1})
 
         await db.collection('db').doc(uid).set({
