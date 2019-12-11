@@ -1,5 +1,5 @@
 // two digit date, month - add 0 to date, month if it's less than 10
-export const transform = (number: number): number => number < 10 ? Number('0' + number.toString()) : number
+export const transform = (number: number): string => number < 10 ? '0' + number.toString() : String(number)
 
 interface DMY {
 	date: number

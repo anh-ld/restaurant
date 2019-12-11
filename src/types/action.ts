@@ -15,3 +15,8 @@ export interface Item {
     price: number
     name: string
 }
+
+export interface MenuType {
+    category: string
+    dishes: Array<Item>
+}

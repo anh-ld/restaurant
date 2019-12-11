@@ -7,9 +7,12 @@ import styled from "styled-components"
 import {CustomerData, State, TableDataType} from "Type/store"
 import Button from 'Atom/Button'
 
-const CheckInButton = styled(props => <Button {...props} />)``
+const CheckInButton = styled(props => <Button {...props} />)`
+    width: 100%;
+`
 
 const CheckOutButton = styled(props => <Button variant='invert' {...props} />)`
+    width: 100%;
     background-color: ${p => p.theme['N100']};
 `
 interface Props {

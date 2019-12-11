@@ -31,7 +31,7 @@ const Overlay:React.FC<{}> = (props) => {
         )
     }
 
-    if (innerWidth < 1000 || innerHeight < 750) {
+    if (innerWidth < 1000 || innerHeight < 800) {
         return (
             <StyledOverlay>
                 Not supported for small screen. Try using larger screen to get the best experience. Thank you.

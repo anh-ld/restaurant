@@ -25,13 +25,13 @@ const SelectedTableButton = styled(props => <StyledButton {...props} />)`
 `
 
 interface Props {
-    tableStatusData: Array<boolean>
     id: number
+    isSelected: boolean
     onSelect: (id: number) => void
 }
 
-const TableButton: React.FC<Props> = ({tableStatusData, id, onSelect}) => {
-    const RenderTableButton = tableStatusData[id] ? SelectedTableButton : StyledTableButton
+const TableButton: React.FC<Props> = ({id, onSelect, isSelected}) => {
+    const RenderTableButton = isSelected ? SelectedTableButton : StyledTableButton
 
     return (
         <div className="df jcc aic">
@@ -42,12 +42,10 @@ const TableButton: React.FC<Props> = ({tableStatusData, id, onSelect}) => {
     )
 }
 
-const mapStateToProps = (state: State) => ({tableStatusData: state.tableStatusData})
-
 const mapDispatchToProps = (dispatch: any) => ({
     onSelect: (id: number) => {
         dispatch(selectTable(id))
     }
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(TableButton)
+export default connect(null, mapDispatchToProps)(TableButton)

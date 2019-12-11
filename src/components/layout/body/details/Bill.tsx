@@ -9,7 +9,7 @@ const StyledBill = styled(p => <Heading variant='medium' {...p} />)`
     color: ${p => p.theme['700']}
 `
 const Unit = styled.span`
-    font-size: 16px;
+    font-size: 18px;
     color: ${p => p.theme['N700']}
 `
 
@@ -22,8 +22,8 @@ const Bill: React.FC<Props> = ({items}) => {
 
     return (
         <StyledBill className="tc">
-            Total: {total}
-            <Unit>$</Unit>
+            Total: <Unit>$</Unit>
+            {total}
         </StyledBill>
     )
 }

@@ -8,7 +8,7 @@ const Dotenv = require('dotenv-webpack');
 
 const htmlWebpackPlugin = new HtmlWebPackPlugin({
   template: "template/index.html",
-  title: "Hanoi Pizza Ordering System",
+  title: "Paolo & Chi Westlake Restaurant",
   favicon: 'template/favicon.ico',
   meta: {viewport: 'width=device-width, initial-scale=1, shrink-to-fit=no'}
 });

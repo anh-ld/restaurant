@@ -4,7 +4,6 @@ import styled from 'styled-components'
 const BaseButton = styled.button`
     font-size: 24px;
     padding: 0;
-    width: 100%;
     line-height: 48px;
     border-radius: 4px;
     border: none;
@@ -44,8 +43,22 @@ const InvertButton = styled(BaseButton)`
     }
 `
 
+const TransparentButton = styled(BaseButton)`
+    color: ${p => p.theme.N700};
+    background: transparent;
+    border-radius: 0;
+    &:hover {
+        cursor: pointer;
+        color: ${p => p.theme['700']};
+    }
+    &:active {
+        cursor: default;
+        color: ${p => p.theme['800']};
+    }
+`
+
 interface Props {
-    variant?: 'invert' | 'main'
+    variant?: 'invert' | 'main' | 'transparent'
     children?: React.ReactNode
     [key: string]: any
 }
@@ -54,6 +67,8 @@ const Button: React.FC<Props> = ({variant, children, ...rest}) => {
     switch (variant) {
         case 'invert':
             return (<InvertButton {...rest}>{children}</InvertButton>)
+        case 'transparent':
+            return (<TransparentButton {...rest}>{children}</TransparentButton>)
         case 'main':
         default:
             return (<MainButton {...rest}>{children}</MainButton>)

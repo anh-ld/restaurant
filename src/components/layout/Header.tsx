@@ -10,7 +10,7 @@ import Button from 'Atom/Button'
 import Heading from 'Atom/Heading'
 
 const StyledHeader = styled.div`
-    padding: 24px 0;
+    padding: 8px 0;
 `
 
 const Title = styled(p => <Heading variant='large' {...p} />)`
@@ -46,7 +46,7 @@ const Header: React.FC<Props> = ({tableStatusData, signOut}) => {
 
     return (
         <StyledHeader className="df jcsb aic">
-            <Title>Hanoi Pizza Restaurant</Title>
+            <Title>Paolo {"&"} Chi Westlake Restaurant</Title>
             <div>
                 <Date className="dib">
                     {transform(date)}/{transform(month)}/{year}
