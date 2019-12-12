@@ -33,9 +33,14 @@ interface Props {
 const TableButton: React.FC<Props> = ({id, onSelect, isSelected}) => {
     const RenderTableButton = isSelected ? SelectedTableButton : StyledTableButton
 
+    const handleClick = (e: React.MouseEvent<HTMLElement>) => {
+        e.stopPropagation()
+        onSelect(id)
+    }
+
     return (
         <div className="df jcc aic">
-            <RenderTableButton onClick={() => onSelect(id)}>
+            <RenderTableButton onClick={handleClick}>
                 {id}
             </RenderTableButton>
         </div>

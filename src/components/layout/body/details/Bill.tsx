@@ -5,7 +5,7 @@ import Heading from 'Atom/Heading'
 import {State, TableDataType} from "Type/store"
 
 const StyledBill = styled(p => <Heading variant='medium' {...p} />)`
-    padding: 8px 0;
+    padding-top: 8px;
     color: ${p => p.theme['700']}
 `
 const Unit = styled.span`

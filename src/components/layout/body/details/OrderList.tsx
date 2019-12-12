@@ -9,7 +9,7 @@ import {transform} from 'Util/date'
 import Group from "Atom/Group"
 
 const StyledOrderList = styled.div`
-    height: 240px;
+    flex: 1;
 `
 
 const ActionButton = styled(props => <Button {...props} />)`
@@ -22,7 +22,6 @@ const ActionButton = styled(props => <Button {...props} />)`
 const Row = styled.div`
     display: flex;
     line-height: 36px;
-    border-bottom: 2px solid ${p => p.theme.N200};
 
     > div:first-child { flex: 4; }
     > div:nth-child(2), div:nth-child(3) { flex: 1; }
@@ -33,30 +32,37 @@ const Row = styled.div`
 `
 
 const HeadingRow = styled(p => <Row {...p} />)`
-    border-bottom: 2px solid ${p => p.theme.N200};
+    border-bottom: 2px solid ${p => p.theme.N100};
 `
 
 const DataRow = styled(p => <Row {...p} />)`
-    border-bottom: 2px solid ${p => p.theme.N100};
+    border-bottom: 2px solid ${p => p.theme.N0};
     color: ${p => p.theme.N800};
 `
 
 const Data = styled.div`
-    height: 204px;
-    overflow-y: scroll;
+    height: 212px;
+    overflow-y: auto;
 
     ::-webkit-scrollbar {
 		width: 8px;
 		height: 8px;
-		background: ${p => p.theme['400']};
+		background: ${p => p.theme['300']};
 	}
 	::-webkit-scrollbar-thumb {
-		background: ${p => p.theme['400']};
+		background: ${p => p.theme['300']};
 		border-radius: 8px;
 	}
 	::-webkit-scrollbar-track {
 		background: ${p => p.theme.N100};
 	}
+`
+
+const Empty = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
 `
 
 interface Props {
@@ -78,37 +84,38 @@ const OrderList: React.FC<Props> = ({items, selectedTable, onAdd, onDelete}) => 
         prevItems = items
     })
 
-    if (!items)
-        return null
-
     return (
         <StyledOrderList>
-            <HeadingRow>
-                <div>Item</div>
-                <div>Price</div>
-                <div>Qty.</div>
-                <div>Actions</div>
-            </HeadingRow>
-            <Data ref={orderTable}>
-            {items.map((item: TableDataType, i: number) => (
-                <DataRow key={i}>
-                    <div>{item.name}</div>
-                    <div>
-                        <span>$</span>
-                        {item.price}
-                    </div>
-                    <div>{transform(item.quantity)}</div>
-                    <Group.Button>
-                        <ActionButton onClick={() => onDelete(selectedTable, i)}>
-                            -
-                        </ActionButton>
-                        <ActionButton onClick={() => onAdd(item.name, item.price, selectedTable)}>
-                            +
-                        </ActionButton>
-                    </Group.Button>
-                </DataRow>
-            ))}
-            </Data>
+            {items.length ? (
+                <>
+                    <HeadingRow>
+                        <div>Item</div>
+                        <div>Price</div>
+                        <div>Qty.</div>
+                        <div>Actions</div>
+                    </HeadingRow>
+                    <Data ref={orderTable}>
+                    {items.map((item: TableDataType, i: number) => (
+                        <DataRow key={i}>
+                            <div>{item.name}</div>
+                            <div>
+                                <span>$</span>
+                                {item.price}
+                            </div>
+                            <div>{transform(item.quantity)}</div>
+                            <Group.Button>
+                                <ActionButton onClick={() => onDelete(selectedTable, i)}>
+                                    -
+                                </ActionButton>
+                                <ActionButton onClick={() => onAdd(item.name, item.price, selectedTable)}>
+                                    +
+                                </ActionButton>
+                            </Group.Button>
+                        </DataRow>
+                    ))}
+                    </Data>
+                </>
+            ) : <Empty>Please select a certain item.</Empty>}
         </StyledOrderList>
     )
 }

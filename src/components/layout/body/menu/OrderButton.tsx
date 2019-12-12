@@ -7,24 +7,15 @@ import {State} from "Type/store"
 interface Props {
     name: string
     price: number
-    selectedTable: number
-    tableStatusData: Array<boolean>
+    selectedTable: number | null
     onAdd: (name: string, price: number, selectedTable: number) => void
 }
 
-const OrderButton: React.FC<Props> = ({selectedTable, tableStatusData, onAdd, name, price}) => (
-    <Button
-        disabled={selectedTable === null || !tableStatusData[selectedTable]}
-        onClick={() => onAdd(name, price, selectedTable)}
-    >
+const OrderButton: React.FC<Props> = ({selectedTable, onAdd, name, price}) => (
+    <Button onClick={() => onAdd(name, price, selectedTable)} >
         {name}
     </Button>
 )
-
-const mapStateToProps = (state: State) => ({
-    selectedTable: state.selectedTable,
-    tableStatusData: state.tableStatusData
-})
 
 const mapDispatchToProps = (dispatch: any) => ({
     onAdd: (name: string, price: number, tableId: number) => {
@@ -32,4 +23,4 @@ const mapDispatchToProps = (dispatch: any) => ({
     }
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(OrderButton)
+export default connect(null, mapDispatchToProps)(OrderButton)

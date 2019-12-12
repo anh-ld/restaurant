@@ -12,9 +12,11 @@ interface TabsProps {
     tabs: Array<Tab>
     onSelect?: (tabIndex: number, tabLabel: string) => void
     contentHeight?: number
+    disabled?: boolean
+    disableMessage?: string
 }
 
-const Tabs: React.FC<TabsProps> = ({ tabs, onSelect, contentHeight }) => {
+const Tabs: React.FC<TabsProps> = ({ tabs, onSelect, contentHeight, disabled, disableMessage }) => {
     const [activeTab, setActiveTab] = useState(0)
 
     const handleChangeTab = (tabIndex: number, tabLabel: string) => {
@@ -39,6 +41,7 @@ const Tabs: React.FC<TabsProps> = ({ tabs, onSelect, contentHeight }) => {
             <TabContent contentHeight={contentHeight}>
                 {tabs[activeTab].content}
             </TabContent>
+            {disabled && <Overlay>{disableMessage || ''}</Overlay>}
         </StyledPane>
     )
 }
@@ -53,9 +56,26 @@ const StyledButton = styled(p => <Button {...p} />)`
     ${p => p.active && ActiveButton}
 `
 
+const Overlay = styled.div`
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 4px;
+    background: ${p => p.theme.N0};
+    opacity: 0.95;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    text-align: center;
+`
+
 const StyledPane = styled(p => <Pane {...p} />)`
-    margin-top: 20px;
     padding-top: 0;
+    position: relative;
+
     > div:first-child {
         position: relative;
         &::after {
@@ -72,17 +92,17 @@ const StyledPane = styled(p => <Pane {...p} />)`
 `
 
 const TabContent = styled.div<{contentHeight?: number}>`
-    padding-top: 16px;
+    padding-top: 8px;
     max-height: ${p => p.contentHeight ? p.contentHeight + 'px' : '100%'};
     overflow-y: auto;
 
     ::-webkit-scrollbar {
 		width: 8px;
 		height: 8px;
-		background: ${p => p.theme['400']};
+		background: ${p => p.theme['300']};
 	}
 	::-webkit-scrollbar-thumb {
-		background: ${p => p.theme['400']};
+		background: ${p => p.theme['300']};
 		border-radius: 8px;
 	}
 	::-webkit-scrollbar-track {

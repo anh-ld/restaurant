@@ -11,6 +11,7 @@ const BaseButton = styled.button`
     font-family: 'horizon_roundedbold';
     
     &&[disabled] {
+        cursor: not-allowed;
         pointer-events: none;
         color: ${p => p.theme['N300']};
         background-color: ${p => p.theme['N100']};

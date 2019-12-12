@@ -9,6 +9,9 @@ const checkoutTable = (total: number, dataHistory: Array<CustomerData>, uid: str
         return item.date === date && item.month === month && item.year === year
     })
 
+    if (!total)
+        return
+
     if (todayData === undefined) {
         const data = [...dataHistory, {date, month, year, money: total, customer: 1}]
         await db.collection('db').doc(uid).set({data})

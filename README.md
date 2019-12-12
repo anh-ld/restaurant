@@ -2,7 +2,7 @@
 
 A simple restaurant ordering system using React, Redux and Firebase.
 
-Menu Items by [Pizza4P's](https://pizza4ps.com/menu/).
+Menu Items by [Paolo & Chi](https://www.paolochi.com/).
 
 Color Palette by [Sproutsocial](https://sproutsocial.com/seeds/visual/color).
 

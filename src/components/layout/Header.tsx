@@ -10,7 +10,7 @@ import Button from 'Atom/Button'
 import Heading from 'Atom/Heading'
 
 const StyledHeader = styled.div`
-    padding: 8px 0;
+    padding: 16px 0;
 `
 
 const Title = styled(p => <Heading variant='large' {...p} />)`
@@ -52,7 +52,7 @@ const Header: React.FC<Props> = ({tableStatusData, signOut}) => {
                     {transform(date)}/{transform(month)}/{year}
                 </Date>
                 <SignOutButton onClick={handleClick}>
-                    Go-out
+                    Go out
                 </SignOutButton>
             </div>
             {showAlert && (

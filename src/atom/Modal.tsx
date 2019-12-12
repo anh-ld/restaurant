@@ -1,5 +1,5 @@
 import React, {useState} from "react"
-import ReactDOM from 'react-dom'
+import {createPortal} from 'react-dom'
 import styled from "styled-components"
 import Button from './Button'
 import Heading from './Heading'
@@ -20,6 +20,7 @@ const StyledModal = styled(p => <Pane {...p} />)`
     margin: 0 auto;
     width: 600px;
     max-height: 80vh;
+    overflow: auto;
 `
 
 const Header = styled.div`
@@ -52,7 +53,7 @@ const Modal: React.FC<Props> = ({title, children, from, forceShow}) => {
             {from && React.cloneElement(from, {
                 onClick: () => setShow(!show)
             })}
-            {show && ReactDOM.createPortal((
+            {show && createPortal((
                 <BackDrop onClick={() => setShow(false)}>
                     <StyledModal>
                         <Header>

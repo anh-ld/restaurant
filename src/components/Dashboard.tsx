@@ -8,7 +8,7 @@ import styled from "styled-components"
 import {State} from "Type/store"
 
 const StyledDashboard = styled.div`
-    width: 960px;
+    max-width: 1280px;
     padding: 0 16px;
 `
 

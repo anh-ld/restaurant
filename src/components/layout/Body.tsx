@@ -7,7 +7,7 @@ import styled from "styled-components"
 const Wrapper = styled.div`
     margin: 24px 0 16px 0;
     height: 350px;
-    grid-template-columns: 3fr 5fr;
+    grid-template-columns: 5fr 7fr;
     grid-gap: 16px;
 `
 
