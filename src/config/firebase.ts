@@ -15,7 +15,9 @@ const config = {
 }
 
 firebase.initializeApp(config)
-firebase.analytics()
+
+if (process.env.NODE_ENV !== 'development')
+    firebase.analytics()
 
 export const authRef = firebase.auth()
 export const GoogleAuthProvider = new firebase.auth.GoogleAuthProvider()

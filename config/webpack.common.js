@@ -1,6 +1,6 @@
 const HtmlWebPackPlugin = require("html-webpack-plugin")
 const DashboardPlugin = require("webpack-dashboard/plugin")
-const CleanWebpackPlugin = require('clean-webpack-plugin')
+const {CleanWebpackPlugin} = require('clean-webpack-plugin')
 const RobotstxtPlugin = require("robotstxt-webpack-plugin")
 const Dotenv = require('dotenv-webpack')
 const paths = require('./paths')
@@ -59,7 +59,7 @@ module.exports = {
         ]
     },
     plugins: [
-        new CleanWebpackPlugin(['build'], {root}),
+        new CleanWebpackPlugin(),
         htmlWebpackPlugin,
         new RobotstxtPlugin(options),
         new DashboardPlugin(),

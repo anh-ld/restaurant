@@ -9,7 +9,7 @@ module.exports = merge(common, {
     output: {
         path: paths.build,
         publicPath: '/',
-        filename: '[name].[contenthash].js',
+        filename: '[name].[contenthash:8].js',
     },
     optimization: {
         minimizer: [ new TerserPlugin({
