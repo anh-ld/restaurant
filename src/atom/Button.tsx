@@ -4,6 +4,7 @@ import styled from 'styled-components'
 const BaseButton = styled.button`
     font-size: 24px;
     padding: 0;
+    margin: 0;
     line-height: 48px;
     border-radius: 4px;
     border: none;
