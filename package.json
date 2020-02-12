@@ -45,7 +45,7 @@
     "styled-components": "^4.4.1"
   },
   "scripts": {
-    "start": "webpack-dashboard -- webpack-dev-server --open --config webpack.dev.js",
-    "build": "webpack-dashboard -- webpack --config webpack.prod.js"
+    "start": "webpack-dashboard -- webpack-dev-server --open --config config/webpack.dev.js",
+    "build": "webpack-dashboard -- webpack --config config/webpack.prod.js"
   }
 }
