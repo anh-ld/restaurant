@@ -23,7 +23,8 @@
       "Util/*": ["src/utils/*"],
       "Asset/*": ["src/assets/*"],
       "Config/*": ["src/config/*"]
-    }
+    },
+    "resolveJsonModule": true,
   },
   "include": [
     "./src/"

@@ -1,11 +1,11 @@
 import React from "react"
 import OrderButton from "./menu/OrderButton"
-import menu from "Util/menu"
 import styled from "styled-components"
 import {Item, MenuType} from "Type/action"
 import Tabs from 'Atom/Tabs'
 import {connect} from 'react-redux'
 import {State} from "Type/store"
+import {menu} from 'Util/menu.json'
 
 const StyledTab = styled.div`
     grid-template-columns: repeat(3, 1fr);
